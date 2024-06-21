@@ -52,7 +52,7 @@ public class BaseCharacter : BaseObject
     {
         _isFacingRight = !_isFacingRight;
         transform.Rotate(0f, 180f, 0f);
-        Debug.Log("Flip");
+        //Debug.Log("Flip");
     }
 
     protected override void Update()

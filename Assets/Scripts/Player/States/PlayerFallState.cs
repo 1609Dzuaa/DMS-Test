@@ -24,11 +24,12 @@ public class PlayerFallState : PlayerBaseState
 
     private bool CheckIfCanIdle()
     {
-        return _playerSM.DirX == 0 && _playerSM.GroundDetected;
+        return _playerSM.GroundDetected;
     }
 
     public override void FixedUpdate()
     {
-        base.FixedUpdate();
+        if (_playerSM.DirX != 0)
+            _playerSM.Rb2D.velocity = new Vector2(_playerSM.DirX * _playerSM.Velo, _playerSM.Rb2D.velocity.y);
     }
 }

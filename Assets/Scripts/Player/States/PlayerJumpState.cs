@@ -30,6 +30,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void FixedUpdate()
     {
-        base.FixedUpdate();
+        if (_playerSM.DirX != 0)
+            _playerSM.Rb2D.velocity = new Vector2(_playerSM.DirX * _playerSM.Velo, _playerSM.Rb2D.velocity.y);
     }
 }
