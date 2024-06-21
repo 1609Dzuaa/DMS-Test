@@ -22,6 +22,8 @@ public class PlayerRunState : PlayerBaseState
             _playerSM.ChangeState(_playerSM.JumpState);
         else if (CheckIfCanIdle())
             _playerSM.ChangeState(_playerSM.IdleState);
+        else if (CheckIfCanFall())
+            _playerSM.ChangeState(_playerSM.FallState);
     }
 
     private bool CheckIfCanJump()
@@ -32,6 +34,11 @@ public class PlayerRunState : PlayerBaseState
     private bool CheckIfCanIdle()
     {
         return Mathf.Abs(_playerSM.DirX) < 0.01f && _playerSM.GroundDetected;
+    }
+
+    private bool CheckIfCanFall()
+    {
+        return !_playerSM.GroundDetected;
     }
 
     public override void FixedUpdate()

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +9,8 @@ public class PlayerStateManager : BaseCharacter
     [SerializeField] LayerMask _groundLayer;
     [SerializeField] Transform _groundCheck;
     [SerializeField] float _groundCheckRadius;
+    [SerializeField] float _delayUpdateAttack;
+    [SerializeField] float _allowComboDuration;
 
     PlayerIdleState _idleState = new(); 
     PlayerRunState _runState = new();
@@ -22,10 +24,20 @@ public class PlayerStateManager : BaseCharacter
 
     float _dirX;
     bool _groundDetected;
+    int _comboIndex = 0;
+    float _attackEntryTime;
 
     public float DirX { get => _dirX; }
 
+    public int ComboIndex { get => _comboIndex; set => _comboIndex = value; }
+
+    public float AllowComboDuration { get => _allowComboDuration; }
+
     public bool GroundDetected { get => _groundDetected; }
+
+    public float AttackEntryTime { get => _attackEntryTime; set => _attackEntryTime = value; }
+
+    public float DelayUpdateAttack { get => _delayUpdateAttack; }
 
     public float Velo { get => _velo; }
 
@@ -43,11 +55,11 @@ public class PlayerStateManager : BaseCharacter
 
     public PlayerAttack2State Attack2State { get => _attack2State; set => _attack2State = value; }
 
-    public PlayerAttack3State PlayerAttack3State { get => _attack3State; set => _attack3State = value; }
+    public PlayerAttack3State Attack3State { get => _attack3State; set => _attack3State = value; }
 
     public PlayerGetHitState GetHitState { get => _getHitState; set => _getHitState = value; }
 
-    public PlayerDieState PlayerDieState { get => _dieState; set => _dieState = value; }
+    public PlayerDieState DieState { get => _dieState; set => _dieState = value; }
 
     protected override void GetRefComponents()
     {
@@ -64,7 +76,7 @@ public class PlayerStateManager : BaseCharacter
     {
         base.Update();
         HandleFlipSprite();
-        Debug.Log("Ground: " + _groundDetected);
+        //Debug.Log("Ground: " + _groundDetected);
     }
 
     private void HandleInput()
@@ -96,5 +108,11 @@ public class PlayerStateManager : BaseCharacter
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(_groundCheck.position, _groundCheckRadius);
+    }
+
+    //Event của animations attack
+    private void BackToIdle()
+    {
+        ChangeState(_idleState);
     }
 }
