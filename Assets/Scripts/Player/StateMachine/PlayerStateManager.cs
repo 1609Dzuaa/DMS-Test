@@ -21,7 +21,7 @@ public class PlayerStateManager : BaseCharacter
     PlayerDieState _dieState = new();
 
     float _dirX;
-    bool _groundDetected = true;
+    bool _groundDetected;
 
     public float DirX { get => _dirX; }
 
