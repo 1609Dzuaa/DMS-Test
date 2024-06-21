@@ -21,7 +21,7 @@ public class PlayerStateManager : BaseCharacter
     PlayerDieState _dieState = new();
 
     float _dirX;
-    bool _groundDetected = true;
+    bool _groundDetected;
 
     public float DirX { get => _dirX; }
 
@@ -91,5 +91,10 @@ public class PlayerStateManager : BaseCharacter
         if (!_groundCheck) return;
 
         _groundDetected = Physics2D.OverlapCircle(_groundCheck.position, _groundCheckRadius, _groundLayer);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(_groundCheck.position, _groundCheckRadius);
     }
 }
