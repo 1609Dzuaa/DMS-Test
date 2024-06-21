@@ -8,6 +8,7 @@ public class BaseCharacter : BaseObject
     
     protected CharacterBaseState _state;
     protected Rigidbody2D _rb;
+    [SerializeField] protected bool _isFacingRight;
 
     #endregion
 
@@ -45,6 +46,13 @@ public class BaseCharacter : BaseObject
         _state?.ExitState();
         _state = state;
         _state.EnterState(this);
+    }
+
+    public void FlipSprite()
+    {
+        _isFacingRight = !_isFacingRight;
+        transform.Rotate(0f, 180f, 0f);
+        Debug.Log("Flip");
     }
 
     protected override void Update()
