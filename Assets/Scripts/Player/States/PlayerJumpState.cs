@@ -8,7 +8,7 @@ public class PlayerJumpState : PlayerBaseState
     {
         base.EnterState(baseCharacter);
         _playerSM.Rb2D.velocity = new Vector2(_playerSM.Rb2D.velocity.x, _playerSM.JumpForce);
-        _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Run);
+        _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Jump);
         Debug.Log("Player Jump");
     }
 
