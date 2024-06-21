@@ -7,6 +7,7 @@ public class PlayerAttack2State : PlayerBaseState
     public override void EnterState(BaseCharacter baseCharacter)
     {
         base.EnterState(baseCharacter);
+        _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Attack2);
         Debug.Log("Player Atk2");
     }
 

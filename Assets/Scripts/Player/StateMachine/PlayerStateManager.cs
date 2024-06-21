@@ -21,7 +21,7 @@ public class PlayerStateManager : BaseCharacter
     PlayerDieState _dieState = new();
 
     float _dirX;
-    bool _groundDetected;
+    bool _groundDetected = true;
 
     public float DirX { get => _dirX; }
 
@@ -64,6 +64,7 @@ public class PlayerStateManager : BaseCharacter
     {
         base.Update();
         HandleFlipSprite();
+        Debug.Log("Ground: " + _groundDetected);
     }
 
     private void HandleInput()

@@ -8,6 +8,7 @@ public class PlayerIdleState : PlayerBaseState
     {
         base.EnterState(baseCharacter);
         _playerSM.Rb2D.velocity = Vector2.zero;
+        _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Idle);
         Debug.Log("Player Idle");
     }
 
