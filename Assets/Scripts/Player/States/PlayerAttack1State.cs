@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : CharacterBaseState
+public class PlayerAttack1State : PlayerBaseState
 {
-    private PlayerStateManager _playerSM;
-
     public override void EnterState(BaseCharacter baseCharacter)
     {
-        _playerSM = (PlayerStateManager)baseCharacter;
-        Debug.Log("Player Idle");
+        base.EnterState(baseCharacter);
+        _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Attack1);
+        Debug.Log("Player Atk1");
     }
 
     public override void ExitState()

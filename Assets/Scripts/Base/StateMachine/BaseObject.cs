@@ -6,6 +6,8 @@ public class BaseObject : MonoBehaviour
 {
     protected Animator _anim;
 
+    public Animator Anim { get => _anim; set => _anim = value; }
+
     protected virtual void Awake()
     {
         GetRefComponents();

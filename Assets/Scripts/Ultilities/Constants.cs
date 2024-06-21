@@ -5,4 +5,7 @@ using UnityEngine;
 public static class Constants 
 {
     public const string PLAYER_TAG = "Player";
+    public const string HORIZONTAL_AXIS = "Horizontal";
+    public const string STATE_PARAM = "State";
+    public const string SWORD_PARAM = "Sword";
 }
