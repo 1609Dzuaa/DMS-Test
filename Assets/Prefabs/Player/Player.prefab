@@ -161,7 +161,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &7254293083564029841
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -201,8 +201,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isFacingRight: 1
-  _velo: 7
-  _jumpForce: 7
+  _velo: 5
+  _jumpForce: 9
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
