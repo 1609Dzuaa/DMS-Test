@@ -16,7 +16,7 @@ public class BaseCharacter : BaseObject
 
     public Rigidbody2D Rb2D { get => _rb; set => _rb = value; }
 
-
+    public bool IsFacingRight { get => _isFacingRight; }
 
     #endregion
 
