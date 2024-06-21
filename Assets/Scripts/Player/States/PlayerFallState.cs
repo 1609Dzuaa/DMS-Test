@@ -18,7 +18,13 @@ public class PlayerFallState : PlayerBaseState
 
     public override void Update()
     {
-        base.Update();
+        if (CheckIfCanIdle())
+            _playerSM.ChangeState(_playerSM.IdleState);
+    }
+
+    private bool CheckIfCanIdle()
+    {
+        return _playerSM.DirX == 0 && _playerSM.GroundDetected;
     }
 
     public override void FixedUpdate()

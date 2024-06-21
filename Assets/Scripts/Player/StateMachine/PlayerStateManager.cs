@@ -92,4 +92,9 @@ public class PlayerStateManager : BaseCharacter
 
         _groundDetected = Physics2D.OverlapCircle(_groundCheck.position, _groundCheckRadius, _groundLayer);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(_groundCheck.position, _groundCheckRadius);
+    }
 }
