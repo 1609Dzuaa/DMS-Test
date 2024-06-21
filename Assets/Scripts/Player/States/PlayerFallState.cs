@@ -7,6 +7,7 @@ public class PlayerFallState : PlayerBaseState
     public override void EnterState(BaseCharacter baseCharacter)
     {
         base.EnterState(baseCharacter);
+        _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Fall);
         Debug.Log("Player Fall");
     }
 
