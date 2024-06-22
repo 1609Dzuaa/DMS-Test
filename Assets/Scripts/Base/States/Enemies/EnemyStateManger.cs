@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStateManger : BaseCharacter
+public class EnemyStateManger : BaseCharacter, IDamageable
 {
-    [SerializeField] Transform _playerCheck;
+    [SerializeField] protected Transform _playerCheck;
     [SerializeField] protected EnemySO _enemySO;
 
     protected RaycastHit2D _playerHit;
@@ -41,5 +41,10 @@ public class EnemyStateManger : BaseCharacter
             _playerDetected = _playerHit.collider.CompareTag(Constants.PLAYER_TAG);
             Debug.Log((_playerDetected) ? "Founded" : "Not Found");
         }
+    }
+
+    public void HandleTakeDamage(float damageTaken)
+    {
+        
     }
 }

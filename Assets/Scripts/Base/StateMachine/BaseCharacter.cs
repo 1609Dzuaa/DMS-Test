@@ -8,7 +8,11 @@ public class BaseCharacter : BaseObject
     
     protected CharacterBaseState _state;
     protected Rigidbody2D _rb;
+    [Header("Is Sprite Left Or Right")]
     [SerializeField] protected bool _isFacingRight;
+
+    [Header("HP")]
+    [SerializeField] protected float _healthPoint; 
 
     #endregion
 
@@ -17,6 +21,8 @@ public class BaseCharacter : BaseObject
     public Rigidbody2D Rb2D { get => _rb; set => _rb = value; }
 
     public bool IsFacingRight { get => _isFacingRight; }
+
+    public float HealthPoint { get => _healthPoint; set => _healthPoint = value; }
 
     #endregion
 

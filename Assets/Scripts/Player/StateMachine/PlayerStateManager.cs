@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class PlayerStateManager : BaseCharacter
 {
+    [Header("Number Fields")]
     [SerializeField] float _velo;
     [SerializeField] float _jumpForce;
-    [SerializeField] LayerMask _groundLayer;
-    [SerializeField] Transform _groundCheck;
     [SerializeField] float _groundCheckRadius;
     [SerializeField] float _delayUpdateAttack;
     [SerializeField] float _allowComboDuration;
 
+    [Header("GroundCheck Fields")]
+    [SerializeField] LayerMask _groundLayer;
+    [SerializeField] Transform _groundCheck;
+
+    #region States
     PlayerIdleState _idleState = new(); 
     PlayerRunState _runState = new();
     PlayerJumpState _jumpState = new();
@@ -21,6 +25,7 @@ public class PlayerStateManager : BaseCharacter
     PlayerAttack3State _attack3State = new();
     PlayerGetHitState _getHitState = new();
     PlayerDieState _dieState = new();
+    #endregion
 
     float _dirX;
     bool _groundDetected;
