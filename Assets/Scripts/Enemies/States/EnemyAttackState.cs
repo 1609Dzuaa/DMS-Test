@@ -8,6 +8,7 @@ public class EnemyAttackState : EnemyBaseState
     {
         base.EnterState(baseCharacter);
         _enemySM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EEnemyState.Attack);
+        _enemySM.Rb2D.velocity = Vector2.zero;
         Debug.Log("Enemy Attack");
     }
 

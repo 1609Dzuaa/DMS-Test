@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,7 @@ public class EnemyStateManger : BaseCharacter, IDamageable
     [SerializeField] protected Transform _groundCheck;
     [SerializeField] protected Transform _wallCheck;
     [SerializeField] protected EnemySO _enemySO;
+    [SerializeField] protected Transform _playerRef;
 
     #region States
     protected EnemyIdleState _idleState = new();
@@ -37,6 +38,8 @@ public class EnemyStateManger : BaseCharacter, IDamageable
     public EnemyDieState DieState { get => _dieState; set => _dieState = value; }
 
     public EnemySO GetEnemySO { get => _enemySO; }
+
+    public Transform PlayerRef { get => _playerRef; }
 
     public float EntryTime { get => _entryTime; set => _entryTime = value; }
 
@@ -91,6 +94,7 @@ public class EnemyStateManger : BaseCharacter, IDamageable
         PlayerCheck();
         GroundCheck();
         WallCheck();
+        Debug.Log("Rb Sleep?: " + _rb.IsSleeping());
     }
 
     protected virtual void PlayerCheck()
@@ -101,7 +105,7 @@ public class EnemyStateManger : BaseCharacter, IDamageable
         if (_playerHit)
         {
             _playerDetected = _playerHit.collider.CompareTag(Constants.PLAYER_TAG);
-            Debug.Log((_playerDetected) ? "Founded" : "Not Found");
+            //Debug.Log((_playerDetected) ? "Founded" : "Not Found");
         }
     }
 
@@ -117,6 +121,26 @@ public class EnemyStateManger : BaseCharacter, IDamageable
 
     public void HandleTakeDamage(float damageTaken)
     {
-        
+        _healthPoint -= damageTaken;
+        ChangeState((_healthPoint) > 0 ? _hitState : _dieState);
+    }
+
+    //Event của animation attack đặt ở cuối frame
+    private void BackToIdle()
+    {
+        ChangeState(_idleState);
+    }
+
+    //Event của animation attack wakeup rb khi attack tránh TH:
+    //Player và quái đứng yên nhưng kh bắt đc trigger collision
+    private void WakeUpRigidbody()
+    {
+        _rb.WakeUp();
+    }
+
+    //Tắt ở frame attack collider bị disable để 0 có collision, tránh OnTrigger bị gọi lần nữa
+    private void RigidbodySleep()
+    {
+        _rb.Sleep();
     }
 }
