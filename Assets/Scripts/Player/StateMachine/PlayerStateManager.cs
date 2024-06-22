@@ -1,15 +1,21 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStateManager : BaseCharacter
 {
+    [Header("Number Fields")]
     [SerializeField] float _velo;
     [SerializeField] float _jumpForce;
+    [SerializeField] float _groundCheckRadius;
+    [SerializeField] float _delayUpdateAttack;
+    [SerializeField] float _allowComboDuration;
+
+    [Header("GroundCheck Fields")]
     [SerializeField] LayerMask _groundLayer;
     [SerializeField] Transform _groundCheck;
-    [SerializeField] float _groundCheckRadius;
 
+    #region States
     PlayerIdleState _idleState = new(); 
     PlayerRunState _runState = new();
     PlayerJumpState _jumpState = new();
@@ -19,13 +25,25 @@ public class PlayerStateManager : BaseCharacter
     PlayerAttack3State _attack3State = new();
     PlayerGetHitState _getHitState = new();
     PlayerDieState _dieState = new();
+    #endregion
 
     float _dirX;
     bool _groundDetected;
+    int _currentComboIndex = 0;
+    float _attackEntryTime;
+    //Biến đếm giờ bắt đầu perform attack, để check xem còn trong thgian cho phép attack tiếp không
 
     public float DirX { get => _dirX; }
 
+    public int CurrentComboIndex { get => _currentComboIndex; set => _currentComboIndex = value; }
+
+    public float AllowComboDuration { get => _allowComboDuration; }
+
     public bool GroundDetected { get => _groundDetected; }
+
+    public float AttackEntryTime { get => _attackEntryTime; set => _attackEntryTime = value; }
+
+    public float DelayUpdateAttack { get => _delayUpdateAttack; }
 
     public float Velo { get => _velo; }
 
@@ -43,11 +61,11 @@ public class PlayerStateManager : BaseCharacter
 
     public PlayerAttack2State Attack2State { get => _attack2State; set => _attack2State = value; }
 
-    public PlayerAttack3State PlayerAttack3State { get => _attack3State; set => _attack3State = value; }
+    public PlayerAttack3State Attack3State { get => _attack3State; set => _attack3State = value; }
 
     public PlayerGetHitState GetHitState { get => _getHitState; set => _getHitState = value; }
 
-    public PlayerDieState PlayerDieState { get => _dieState; set => _dieState = value; }
+    public PlayerDieState DieState { get => _dieState; set => _dieState = value; }
 
     protected override void GetRefComponents()
     {
@@ -64,7 +82,7 @@ public class PlayerStateManager : BaseCharacter
     {
         base.Update();
         HandleFlipSprite();
-        Debug.Log("Ground: " + _groundDetected);
+        //Debug.Log("Ground: " + _groundDetected);
     }
 
     private void HandleInput()
@@ -96,5 +114,11 @@ public class PlayerStateManager : BaseCharacter
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(_groundCheck.position, _groundCheckRadius);
+    }
+
+    //Event của animations attack
+    private void BackToIdle()
+    {
+        ChangeState(_idleState);
     }
 }
