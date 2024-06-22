@@ -472,14 +472,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isFacingRight: 1
+  _healthPoint: 150
   _velo: 5
   _jumpForce: 9
   _groundCheckRadius: 0.4
   _delayUpdateAttack: 0.315
   _allowComboDuration: 1.5
-  _attack1Damage: 10
-  _attack2Damage: 15
-  _attack3Damage: 20
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64

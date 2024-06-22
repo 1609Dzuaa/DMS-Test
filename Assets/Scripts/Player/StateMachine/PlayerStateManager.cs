@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateManager : BaseCharacter
+public class PlayerStateManager : BaseCharacter, IDamageable
 {
     [Header("Number Fields")]
     [SerializeField] float _velo;
@@ -82,6 +82,7 @@ public class PlayerStateManager : BaseCharacter
     {
         base.Update();
         HandleFlipSprite();
+        Debug.Log("HP: " + _healthPoint);
         //Debug.Log("Ground: " + _groundDetected);
     }
 
@@ -122,5 +123,9 @@ public class PlayerStateManager : BaseCharacter
         ChangeState(_idleState);
     }
 
-       
+    public void HandleTakeDamage(float damageTaken)
+    {
+        _healthPoint -= damageTaken;
+        ChangeState((_healthPoint) > 0 ? _getHitState : _dieState);
+    }
 }

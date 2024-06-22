@@ -11,7 +11,7 @@ public class EnemyPatrolState : EnemyBaseState
         base.EnterState(baseCharacter);
         _enemySM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EEnemyState.Patrol);
         _enemySM.EntryTime = Time.time;
-        Debug.Log("Enemy PT");
+        //Debug.Log("Enemy PT");
     }
 
     public override void ExitState()
@@ -27,8 +27,19 @@ public class EnemyPatrolState : EnemyBaseState
             _Flipped = true;
         }
 
-        if (CheckIfCanRest())
+        if (CheckIfCanChase())
+            _enemySM.ChangeState(_enemySM.ChaseState);
+        else if (CheckIfCanRest())
             _enemySM.ChangeState(_enemySM.IdleState);
+    }
+
+    private bool CheckIfCanChase()
+    {
+        Vector2 currentPos = _enemySM.transform.position;
+        Vector2 playerPos = _enemySM.PlayerRef.position;
+        float attackableRange = _enemySM.GetEnemySO.AttackableRange;
+
+        return _enemySM.PlayerDetected && Vector2.Distance(currentPos, playerPos) > attackableRange;
     }
 
     private bool CheckIfCanRest()
