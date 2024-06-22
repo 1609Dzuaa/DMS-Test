@@ -122,12 +122,5 @@ public class PlayerStateManager : BaseCharacter
         ChangeState(_idleState);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Coin"))
-        {
-            Destroy(other.gameObject);
-            cm.Coincout++;
-        }
-    }
+       
 }
