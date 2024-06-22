@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Items
+  - Gold Coin
+  - Silver Coin
+  - Potion Blood
+  - Potion Speed
+  - Potion Damge
   layers:
   - Default
   - TransparentFX
@@ -14,7 +20,7 @@ TagManager:
   - UI
   - Ground
   - Enemy
-  - 
+  - Items
   - 
   - 
   - 
