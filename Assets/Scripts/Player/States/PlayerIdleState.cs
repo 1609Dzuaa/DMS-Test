@@ -10,7 +10,7 @@ public class PlayerIdleState : PlayerBaseState
         _playerSM.Rb2D.velocity = Vector2.zero;
         _playerSM.Rb2D.gravityScale = Constants.INITIAL_GRAVITY;
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Idle);
-        Debug.Log("Player Idle");
+        //Debug.Log("Player Idle");
     }
 
     public override void ExitState()
@@ -45,7 +45,7 @@ public class PlayerIdleState : PlayerBaseState
             if (Time.time - _playerSM.AttackEntryTime > _playerSM.AllowComboDuration)
                 _playerSM.CurrentComboIndex = 0; //Hết thgian combo thì reset CurrentComboIndex về 0
         }
-        Debug.Log("Combo: " + _playerSM.CurrentComboIndex);
+        //Debug.Log("Combo: " + _playerSM.CurrentComboIndex);
     }
 
     private bool CheckIfCanJump()
