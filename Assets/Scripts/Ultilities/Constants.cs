@@ -9,6 +9,8 @@ public static class Constants
     public const string HORIZONTAL_AXIS = "Horizontal";
     public const string STATE_PARAM = "State";
     public const string SWORD_PARAM = "Sword";
+    public const string DEAD_PARAM = "Dead";
+    public const string GROUND_TAG = "Ground";
     #endregion
 
     #region CONSTANT NUMBERS

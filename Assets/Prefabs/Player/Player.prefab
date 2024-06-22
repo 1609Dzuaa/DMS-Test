@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7254293083564029845}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4581475603544529384
 SpriteRenderer:
@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41536bd07f7270b4598d1aa8aa9ae233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isFacingRight: 0
   _damageDealt: 20
 --- !u!1 &3490025923596885102
 GameObject:
@@ -175,7 +176,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7254293083564029845}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4281760964118393606
 SpriteRenderer:
@@ -267,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41536bd07f7270b4598d1aa8aa9ae233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isFacingRight: 0
   _damageDealt: 10
 --- !u!1 &7254293083170727542
 GameObject:
@@ -333,6 +335,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7254293083170727543}
+  - {fileID: 6248598377111938590}
   - {fileID: 8591953091132956454}
   - {fileID: 2515575439185569702}
   - {fileID: 3830253659151076533}
@@ -472,7 +475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isFacingRight: 1
-  _healthPoint: 150
+  _healthPoint: 30
   _velo: 5
   _jumpForce: 9
   _groundCheckRadius: 0.4
@@ -482,6 +485,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _groundCheck: {fileID: 7254293083170727543}
+  _throwPos: {fileID: 6248598377111938590}
 --- !u!1 &8240069310031025279
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +518,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7254293083564029845}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &936009984937787731
 SpriteRenderer:
@@ -621,4 +625,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41536bd07f7270b4598d1aa8aa9ae233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isFacingRight: 0
   _damageDealt: 15
+--- !u!1 &8868111274777185659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6248598377111938590}
+  m_Layer: 3
+  m_Name: ThrowPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6248598377111938590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8868111274777185659}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.87, y: -0.03, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7254293083564029845}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
