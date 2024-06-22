@@ -121,4 +121,6 @@ public class PlayerStateManager : BaseCharacter
     {
         ChangeState(_idleState);
     }
+
+       
 }
