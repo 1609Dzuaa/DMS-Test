@@ -24,12 +24,13 @@ public class PlayerStateManager : BaseCharacter
 
     float _dirX;
     bool _groundDetected;
-    int _comboIndex = 0;
+    int _currentComboIndex = 0;
     float _attackEntryTime;
+    //Biến đếm giờ bắt đầu perform attack, để check xem còn trong thgian cho phép attack tiếp không
 
     public float DirX { get => _dirX; }
 
-    public int ComboIndex { get => _comboIndex; set => _comboIndex = value; }
+    public int CurrentComboIndex { get => _currentComboIndex; set => _currentComboIndex = value; }
 
     public float AllowComboDuration { get => _allowComboDuration; }
 

@@ -8,6 +8,7 @@ public class PlayerFallState : PlayerBaseState
     {
         base.EnterState(baseCharacter);
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Fall);
+        _playerSM.Rb2D.gravityScale = Constants.GRAVITY_WHILE_FALL;
         Debug.Log("Player Fall");
     }
 
