@@ -12331,7 +12331,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7254293083564029843, guid: 6875e11a839934b4cba2f544887c84a9, type: 3}
       propertyPath: _allowComboDuration
-      value: 0.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7254293083564029845, guid: 6875e11a839934b4cba2f544887c84a9, type: 3}
       propertyPath: m_RootOrder

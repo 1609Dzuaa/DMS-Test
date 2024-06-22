@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +8,7 @@ public class PlayerIdleState : PlayerBaseState
     {
         base.EnterState(baseCharacter);
         _playerSM.Rb2D.velocity = Vector2.zero;
+        _playerSM.Rb2D.gravityScale = Constants.INITIAL_GRAVITY;
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Idle);
         Debug.Log("Player Idle");
     }
@@ -24,44 +25,27 @@ public class PlayerIdleState : PlayerBaseState
         else if (CheckIfCanRun())
             _playerSM.ChangeState(_playerSM.RunState);
         else
-            CheckIfCanAttack(_playerSM.ComboIndex);
+            CheckIfCanAttack();
     }
 
-    private void CheckIfCanAttack(int comboIndex)
+    private void CheckIfCanAttack()
     {
-        switch (comboIndex)
+        if (Input.GetMouseButtonDown(0))
         {
-            case 0:
-                if (Input.GetMouseButtonDown(0))
-                {
-                    _playerSM.ChangeState(_playerSM.Attack1State);
-                    _playerSM.ComboIndex += 1;
-                }
-                break;
-
-            case 1:
-                if (Time.time - _playerSM.AttackEntryTime <= _playerSM.AllowComboDuration
-                    && Input.GetMouseButtonDown(0))
-                {
-                    _playerSM.ChangeState(_playerSM.Attack2State);
-                    _playerSM.ComboIndex += 1;
-                }
-                else if(Time.time - _playerSM.AttackEntryTime > _playerSM.AllowComboDuration)
-                    _playerSM.ComboIndex = 0;
-                break;
-
-            case 2:
-                if (Time.time - _playerSM.AttackEntryTime <= _playerSM.AllowComboDuration
-                    && Input.GetMouseButtonDown(0))
-                {
-                    _playerSM.ChangeState(_playerSM.Attack3State);
-                    _playerSM.ComboIndex = 0;
-                }
-                else if (Time.time - _playerSM.AttackEntryTime > _playerSM.AllowComboDuration)
-                    _playerSM.ComboIndex = 0;
-                break;
+            if (_playerSM.CurrentComboIndex == 0) _playerSM.ChangeState(_playerSM.Attack1State);
+            else if (Time.time - _playerSM.AttackEntryTime <= _playerSM.AllowComboDuration)
+            {
+                _playerSM.ChangeState((_playerSM.CurrentComboIndex == 1) ? _playerSM.Attack2State : _playerSM.Attack3State);
+            }
+            else
+                _playerSM.CurrentComboIndex = 0; //Hết thgian combo thì reset CurrentComboIndex về 0
         }
-        Debug.Log("Combo: " + _playerSM.ComboIndex);
+        else
+        {
+            if (Time.time - _playerSM.AttackEntryTime > _playerSM.AllowComboDuration)
+                _playerSM.CurrentComboIndex = 0; //Hết thgian combo thì reset CurrentComboIndex về 0
+        }
+        Debug.Log("Combo: " + _playerSM.CurrentComboIndex);
     }
 
     private bool CheckIfCanJump()

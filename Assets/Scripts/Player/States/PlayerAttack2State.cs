@@ -9,6 +9,7 @@ public class PlayerAttack2State : PlayerBaseState
         base.EnterState(baseCharacter);
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Attack2);
         _playerSM.AttackEntryTime = Time.time;
+        _playerSM.CurrentComboIndex = 2;
         Debug.Log("Player Atk2");
     }
 

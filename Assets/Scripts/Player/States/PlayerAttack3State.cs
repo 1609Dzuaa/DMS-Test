@@ -8,6 +8,7 @@ public class PlayerAttack3State : PlayerBaseState
     {
         base.EnterState(baseCharacter);
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Attack3);
+        _playerSM.CurrentComboIndex = 0;
         Debug.Log("Player Atk3");
     }
 
