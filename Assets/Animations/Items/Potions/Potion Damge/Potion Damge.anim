@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 01-Pink Star_Idie
+  m_Name: Potion Damge
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,21 +20,19 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: a093eb48958eecf428a7009378a7c86e, type: 3}
+      value: {fileID: 21300000, guid: 0071c4e67b887ac46978e717346b4c0f, type: 3}
     - time: 0.1
-      value: {fileID: 21300000, guid: 4f74a357bc0e94649aa81e8c66644fce, type: 3}
+      value: {fileID: 21300000, guid: 01e8aa7facd1d21428d3e119e73527fd, type: 3}
     - time: 0.2
-      value: {fileID: 21300000, guid: bf489185c00a31d408a182f0d5627f3c, type: 3}
+      value: {fileID: 21300000, guid: d5c853976db29004bae0f8d79de09537, type: 3}
     - time: 0.3
-      value: {fileID: 21300000, guid: 1422a8ed4c261f6499588df431ccc5ce, type: 3}
+      value: {fileID: 21300000, guid: b66f303e1393bf44a85f5f6cb2da7784, type: 3}
     - time: 0.4
-      value: {fileID: 21300000, guid: 95620bcbdaf08cb428934dc6c2d66ce2, type: 3}
+      value: {fileID: 21300000, guid: 873b2c4e24a2f294f86524947d76a23a, type: 3}
     - time: 0.5
-      value: {fileID: 21300000, guid: 6701fc45b57acc646a6cf5e2a37a5e1e, type: 3}
+      value: {fileID: 21300000, guid: 3a747c5793a23b44795afbe9ff20ced0, type: 3}
     - time: 0.6
-      value: {fileID: 21300000, guid: 26a3347a76688f548a4645fd28f95488, type: 3}
-    - time: 0.7
-      value: {fileID: 21300000, guid: e4d2a078c7372c347a98c6b665b41581, type: 3}
+      value: {fileID: 21300000, guid: a06950b068adda843b59ec23f4d7da53, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -54,20 +52,19 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: a093eb48958eecf428a7009378a7c86e, type: 3}
-    - {fileID: 21300000, guid: 4f74a357bc0e94649aa81e8c66644fce, type: 3}
-    - {fileID: 21300000, guid: bf489185c00a31d408a182f0d5627f3c, type: 3}
-    - {fileID: 21300000, guid: 1422a8ed4c261f6499588df431ccc5ce, type: 3}
-    - {fileID: 21300000, guid: 95620bcbdaf08cb428934dc6c2d66ce2, type: 3}
-    - {fileID: 21300000, guid: 6701fc45b57acc646a6cf5e2a37a5e1e, type: 3}
-    - {fileID: 21300000, guid: 26a3347a76688f548a4645fd28f95488, type: 3}
-    - {fileID: 21300000, guid: e4d2a078c7372c347a98c6b665b41581, type: 3}
+    - {fileID: 21300000, guid: 0071c4e67b887ac46978e717346b4c0f, type: 3}
+    - {fileID: 21300000, guid: 01e8aa7facd1d21428d3e119e73527fd, type: 3}
+    - {fileID: 21300000, guid: d5c853976db29004bae0f8d79de09537, type: 3}
+    - {fileID: 21300000, guid: b66f303e1393bf44a85f5f6cb2da7784, type: 3}
+    - {fileID: 21300000, guid: 873b2c4e24a2f294f86524947d76a23a, type: 3}
+    - {fileID: 21300000, guid: 3a747c5793a23b44795afbe9ff20ced0, type: 3}
+    - {fileID: 21300000, guid: a06950b068adda843b59ec23f4d7da53, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8
+    m_StopTime: 0.70000005
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

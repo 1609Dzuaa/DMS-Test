@@ -35,6 +35,8 @@ public class PlayerStateManager : BaseCharacter
 
     public float DirX { get => _dirX; }
 
+    public CoinManager cm;
+
     public int CurrentComboIndex { get => _currentComboIndex; set => _currentComboIndex = value; }
 
     public float AllowComboDuration { get => _allowComboDuration; }
@@ -120,5 +122,14 @@ public class PlayerStateManager : BaseCharacter
     private void BackToIdle()
     {
         ChangeState(_idleState);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            cm.Coincout++;
+        }
     }
 }
