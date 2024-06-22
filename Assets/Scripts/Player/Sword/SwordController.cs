@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Enums;
@@ -52,6 +52,7 @@ public class SwordController : WeaponController
             _collider.size = new Vector2(_initSizeX, _collider.size.y);
             _collider.isTrigger = false;
             gameObject.SetActive(false);
+            //Coi lại đoạn trigger
         }
     }
 
