@@ -20,10 +20,11 @@ public static class Enums
 
     public enum EEnemyState
     {
-        Idle,
-        Run,
-        Attack,
-        GetHit,
-        Die
+        Idle = 0,
+        Patrol = 1,
+        Chase = 2,
+        Attack = 3,
+        GetHit = 4,
+        Die = 5
     }
 }

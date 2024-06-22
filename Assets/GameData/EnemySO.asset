@@ -16,3 +16,12 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  _attackableRange: 0
+  _patrolVelo: 4
+  _chaseVelo: 6
+  _patrolTime: 1.5
+  _restTime: 1
+  _gwCheckDist: 1
+  _gwLayer:
+    serializedVersion: 2
+    m_Bits: 64
