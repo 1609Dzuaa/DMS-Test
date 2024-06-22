@@ -35,8 +35,6 @@ public class PlayerStateManager : BaseCharacter
 
     public float DirX { get => _dirX; }
 
-    public CoinManager cm;
-
     public int CurrentComboIndex { get => _currentComboIndex; set => _currentComboIndex = value; }
 
     public float AllowComboDuration { get => _allowComboDuration; }
