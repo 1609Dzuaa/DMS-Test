@@ -15,6 +15,9 @@ public class PlayerStateManager : BaseCharacter, IDamageable
     [SerializeField] LayerMask _groundLayer;
     [SerializeField] Transform _groundCheck;
 
+    [Header("Throw Position")]
+    [SerializeField] Transform _throwPos;
+
     #region States
     PlayerIdleState _idleState = new(); 
     PlayerRunState _runState = new();
@@ -25,6 +28,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable
     PlayerAttack3State _attack3State = new();
     PlayerGetHitState _getHitState = new();
     PlayerDieState _dieState = new();
+    PlayerThrowState _throwState = new();
     #endregion
 
     float _dirX;
@@ -63,9 +67,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable
 
     public PlayerAttack3State Attack3State { get => _attack3State; set => _attack3State = value; }
 
-    public PlayerGetHitState GetHitState { get => _getHitState; set => _getHitState = value; }
-
-    public PlayerDieState DieState { get => _dieState; set => _dieState = value; }
+    public PlayerThrowState ThrowState { get => _throwState; set => _throwState = value; }
 
     protected override void GetRefComponents()
     {
@@ -127,5 +129,13 @@ public class PlayerStateManager : BaseCharacter, IDamageable
     {
         _healthPoint -= damageTaken;
         ChangeState((_healthPoint) > 0 ? _getHitState : _dieState);
+    }
+
+    private void HandleThrowSword()
+    {
+        GameObject sword = Pool.Instance.GetObjectInPool(Enums.EPoolable.Sword);
+        sword.SetActive(true);
+        sword.transform.position = _throwPos.position;
+        EventsManager.Instance.NotifyObservers(Enums.EEvents.SwordOnReceiveDirection, _isFacingRight);
     }
 }

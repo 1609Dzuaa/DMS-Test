@@ -27,4 +27,23 @@ public static class Enums
         GetHit = 4,
         Die = 5
     }
+
+    public enum ESwordState
+    {
+        Idle = 0,
+        Spin = 1,
+        Embedded = 2,
+    }
+
+    public enum EPoolable
+    {
+        Sword = 0,
+
+    }
+
+    public enum EEvents
+    {
+        SwordOnReceiveDirection = 0,
+
+    }
 }

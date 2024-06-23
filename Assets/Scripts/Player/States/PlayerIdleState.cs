@@ -20,12 +20,19 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void Update()
     {
-        if (CheckIfCanJump())
+        if (CheckIfCanThrowSword())
+            _playerSM.ChangeState(_playerSM.ThrowState);
+        else if (CheckIfCanJump())
             _playerSM.ChangeState(_playerSM.JumpState);
         else if (CheckIfCanRun())
             _playerSM.ChangeState(_playerSM.RunState);
         else
             CheckIfCanAttack();
+    }
+
+    private bool CheckIfCanThrowSword()
+    {
+        return Input.GetKeyDown(KeyCode.E);
     }
 
     private void CheckIfCanAttack()
