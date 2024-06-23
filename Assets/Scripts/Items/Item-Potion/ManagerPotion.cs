@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ManagerPotion : MonoBehaviour
 {
-    private int PotionSpeed;
-    private int PotionDamage;
-    private int PotionBlood;
+    private int PotionSpeed = 20;
+    private int PotionDamage = 10;
+    private int PotionBlood = 3;
 
     private Animation animator;
 
@@ -16,6 +16,23 @@ public class ManagerPotion : MonoBehaviour
         animator = GetComponent<Animation>();
     }
 
+    public void IncreaseHealth(int health)
+    {
+        PotionBlood += health;
+        Debug.Log("IncreaseHealth:" + PotionBlood);
+    }
+
+    public void IncreaseDamage(int damge)
+    {
+        PotionDamage += damge;
+        Debug.Log("IncreaseDamage: " + PotionDamage);
+    }
+
+    public void IncreaseSpeed(int speed)
+    {
+        PotionSpeed += speed;
+        Debug.Log("IncreaseSpeed: " + PotionSpeed);
+    }
     public void DestroyPotion()
     {
         if (gameObject.CompareTag("Potion Speed"))
