@@ -11,6 +11,7 @@ public static class Constants
     public const string SWORD_PARAM = "Sword";
     public const string DEAD_PARAM = "Dead";
     public const string GROUND_TAG = "Ground";
+    public const string WEAPON_LAYER = "Weapon";
     #endregion
 
     #region CONSTANT NUMBERS
