@@ -35,23 +35,29 @@ public class SwordController : WeaponController
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.collider.CompareTag(Constants.GROUND_TAG))
+        if(collision.collider.CompareTag(Constants.GROUND_TAG_LAYER))
         {
-            _anim.SetInteger(Constants.STATE_PARAM, (int)ESwordState.Embedded);
-            gameObject.layer = LayerMask.NameToLayer(Constants.WEAPON_LAYER);
-            _collider.size = new Vector2(_newSizeX, _collider.size.y);
+            //Dính địa hình
+            HandleWhenSwordCollide((int)ESwordState.Embedded, Constants.WEAPON_LAYER, _newSizeX);
         }
+        else if(collision.collider.CompareTag(Constants.PLAYER_TAG_LAYER))
+        {
+            //Thu kiếm về
+            HandleWhenSwordCollide((int)ESwordState.Idle, Constants.PLAYER_TAG_LAYER, _initSizeX);
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void HandleWhenSwordCollide(int AnimParam, string NewLayer, float NewSizeX)
+    {
+        _anim.SetInteger(Constants.STATE_PARAM, AnimParam);
+        gameObject.layer = LayerMask.NameToLayer(NewLayer);
+        _collider.size = new Vector2(NewSizeX, _collider.size.y);
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         //base.OnTriggerEnter2D(collision);
-        if (collision.CompareTag(Constants.PLAYER_TAG))
-        {
-            _anim.SetInteger(Constants.STATE_PARAM, (int)ESwordState.Idle);
-            _collider.size = new Vector2(_initSizeX, _collider.size.y);
-            gameObject.SetActive(false);
-        }
     }
 
     protected override void OnTriggerStay2D(Collider2D collision)
