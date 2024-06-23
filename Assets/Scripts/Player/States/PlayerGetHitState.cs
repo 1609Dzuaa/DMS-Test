@@ -7,6 +7,7 @@ public class PlayerGetHitState : PlayerBaseState
     public override void EnterState(BaseCharacter baseCharacter)
     {
         base.EnterState(baseCharacter);
+        _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.GetHit);
         Debug.Log("Player GH");
     }
 

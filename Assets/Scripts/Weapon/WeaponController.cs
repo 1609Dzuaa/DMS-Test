@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour
+public class WeaponController : BaseObject
 {
     [SerializeField] float _damageDealt;
     bool _activated;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         _activated = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+    }
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (!_activated)
         {
@@ -22,7 +27,7 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    protected virtual void OnTriggerStay2D(Collider2D collision)
     {
         if (!_activated)
         {
