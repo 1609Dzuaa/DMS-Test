@@ -33,11 +33,14 @@ public class PlayerStateManager : BaseCharacter, IDamageable
 
     float _dirX;
     bool _groundDetected;
+    bool _hasSword = true;
     int _currentComboIndex = 0;
     float _attackEntryTime;
     //Biến đếm giờ bắt đầu perform attack, để check xem còn trong thgian cho phép attack tiếp không
 
     public float DirX { get => _dirX; }
+
+    public bool HasSword { get => _hasSword; set => _hasSword = value; }
 
     public int CurrentComboIndex { get => _currentComboIndex; set => _currentComboIndex = value; }
 
@@ -119,6 +122,15 @@ public class PlayerStateManager : BaseCharacter, IDamageable
         Gizmos.DrawSphere(_groundCheck.position, _groundCheckRadius);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag(Constants.SWORD_TAG_LAYER))
+        {
+            _hasSword = true;
+            _anim.SetBool(Constants.SWORD_PARAM, true);
+        }
+    }
+
     //Event của animations attack
     private void BackToIdle()
     {
@@ -131,6 +143,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable
         ChangeState((_healthPoint) > 0 ? _getHitState : _dieState);
     }
 
+    //Event của animation phóng
     private void HandleThrowSword()
     {
         GameObject sword = Pool.Instance.GetObjectInPool(Enums.EPoolable.Sword);
