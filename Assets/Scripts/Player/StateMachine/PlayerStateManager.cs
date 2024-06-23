@@ -37,6 +37,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable
     int _currentComboIndex = 0;
     float _attackEntryTime;
     //Biến đếm giờ bắt đầu perform attack, để check xem còn trong thgian cho phép attack tiếp không
+    float _getHitEntryTime;
 
     public float DirX { get => _dirX; }
 
@@ -49,6 +50,8 @@ public class PlayerStateManager : BaseCharacter, IDamageable
     public bool GroundDetected { get => _groundDetected; }
 
     public float AttackEntryTime { get => _attackEntryTime; set => _attackEntryTime = value; }
+
+    public float GetHitEntryTime { get => _getHitEntryTime; set => _getHitEntryTime = value; }
 
     public float DelayUpdateAttack { get => _delayUpdateAttack; }
 

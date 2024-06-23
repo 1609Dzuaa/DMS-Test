@@ -122,9 +122,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isFacingRight: 1
-  _damageDealt: 25
-  _swordVelo: 6
+  _damageDealt: 30
+  _swordVelo: 7
   _newSizeX: 0.47
+  _offsetCollide: 0.5
 --- !u!61 &2693371372356305539
 BoxCollider2D:
   m_ObjectHideFlags: 0

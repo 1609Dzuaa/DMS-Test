@@ -476,7 +476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isFacingRight: 1
   _healthPoint: 30
-  _velo: 5
+  _velo: 6
   _jumpForce: 9
   _groundCheckRadius: 0.4
   _delayUpdateAttack: 0.315

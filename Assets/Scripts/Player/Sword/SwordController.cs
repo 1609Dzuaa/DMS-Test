@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using static Enums;
 
@@ -7,8 +8,10 @@ public class SwordController : WeaponController
 {
     [SerializeField] float _swordVelo;
     [SerializeField] float _newSizeX;
+    [SerializeField, Tooltip("Thêm/Bớt đoạn này khi ghim vào quái")] float _offsetCollide;
     BoxCollider2D _collider;
     float _initSizeX;
+    bool _isStuck;
 
     protected override void SetUpProperties()
     {
@@ -38,21 +41,33 @@ public class SwordController : WeaponController
         if(collision.collider.CompareTag(Constants.GROUND_TAG_LAYER))
         {
             //Dính địa hình
-            HandleWhenSwordCollide((int)ESwordState.Embedded, Constants.WEAPON_LAYER, _newSizeX);
+            HandleWhenSwordCollide((int)ESwordState.Embedded, Constants.WEAPON_LAYER, _newSizeX, false, false, null);
         }
         else if(collision.collider.CompareTag(Constants.PLAYER_TAG_LAYER))
         {
-            //Thu kiếm về
-            HandleWhenSwordCollide((int)ESwordState.Idle, Constants.PLAYER_TAG_LAYER, _initSizeX);
+            //Chạm Player => Thu kiếm về
+            HandleWhenSwordCollide((int)ESwordState.Idle, Constants.PLAYER_TAG_LAYER, _initSizeX, false, false, null);
             gameObject.SetActive(false);
+        }
+        else if(collision.collider.CompareTag(Constants.ENEMY_TAG_LAYER))
+        {
+            //Ghim kiếm vào quái, chỉnh speed, chỉnh offset
+            collision.collider.GetComponent<IDamageable>()?.HandleTakeDamage(_damageDealt);
+            transform.position += new Vector3((_isFacingRight) ? _offsetCollide : -_offsetCollide, 0f, 0f);
+            _rb.velocity = Vector2.zero;
+            Transform pTransf = collision.collider.transform;
+            HandleWhenSwordCollide((int)ESwordState.Embedded, Constants.ENEMY_TAG_LAYER, _newSizeX, true, true, pTransf);
         }
     }
 
-    private void HandleWhenSwordCollide(int AnimParam, string NewLayer, float NewSizeX)
+    private void HandleWhenSwordCollide(int AnimParam, string NewLayer, float NewSizeX, bool IsKine, bool IsStuck, Transform ParentTransform)
     {
         _anim.SetInteger(Constants.STATE_PARAM, AnimParam);
         gameObject.layer = LayerMask.NameToLayer(NewLayer);
+        transform.parent = ParentTransform;
         _collider.size = new Vector2(NewSizeX, _collider.size.y);
+        _rb.isKinematic = IsKine;
+        _isStuck = IsStuck;
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
@@ -67,7 +82,10 @@ public class SwordController : WeaponController
 
     private void FixedUpdate()
     {
+        if (_isStuck) return;
+
         _rb.velocity = new((_isFacingRight) ? _swordVelo : -_swordVelo, 0f);
+        //Debug.Log("kine: " + _rb.isKinematic);
     }
 
     private void ReceiveDirection(object obj)

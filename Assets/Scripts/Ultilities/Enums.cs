@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,6 +41,7 @@ public static class Enums
 
     }
 
+    //Tạo 1 event khi quái chết thì thông báo cho kiếm khỏi nhận parent (nếu lỡ bị ghim vào quái)
     public enum EEvents
     {
         SwordOnReceiveDirection = 0,
