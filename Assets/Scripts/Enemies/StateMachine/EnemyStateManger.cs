@@ -143,4 +143,10 @@ public class EnemyStateManger : BaseCharacter, IDamageable
     {
         _rb.Sleep();
     }
+
+    //Đặt ở animation Die
+    private void SelfDestroy()
+    {
+        Destroy(gameObject);
+    }
 }

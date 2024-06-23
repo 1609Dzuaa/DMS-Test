@@ -17,8 +17,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   _attackableRange: 2
-  _patrolVelo: 4
-  _chaseVelo: 6
+  _patrolVelo: 2
+  _chaseVelo: 3
   _patrolTime: 1.5
   _restTime: 1
   _gwCheckDist: 1

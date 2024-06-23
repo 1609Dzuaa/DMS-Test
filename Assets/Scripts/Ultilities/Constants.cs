@@ -13,6 +13,7 @@ public static class Constants
     public const string GROUND_TAG_LAYER = "Ground";
     public const string WEAPON_LAYER = "Weapon";
     public const string SWORD_TAG_LAYER = "Sword";
+    public const string ENEMY_TAG_LAYER = "Enemy";
     #endregion
 
     #region CONSTANT NUMBERS

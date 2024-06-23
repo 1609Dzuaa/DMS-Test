@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WeaponController : BaseObject
 {
-    [SerializeField] float _damageDealt;
-    bool _activated;
+    [SerializeField] protected float _damageDealt;
+    protected bool _activated;
 
     protected virtual void OnEnable()
     {
