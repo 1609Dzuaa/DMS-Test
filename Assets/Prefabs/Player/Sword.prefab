@@ -124,7 +124,7 @@ MonoBehaviour:
   _isFacingRight: 1
   _damageDealt: 25
   _swordVelo: 6
-  _newSizeX: 0.45
+  _newSizeX: 0.47
 --- !u!61 &2693371372356305539
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1967759, y: 0.31857926}
+  m_Size: {x: 1.15, y: 0.31857926}
   m_EdgeRadius: 0
 --- !u!50 &7461723995763596463
 Rigidbody2D:

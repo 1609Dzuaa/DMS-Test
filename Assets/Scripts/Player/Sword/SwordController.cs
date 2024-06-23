@@ -38,8 +38,8 @@ public class SwordController : WeaponController
         if(collision.collider.CompareTag(Constants.GROUND_TAG))
         {
             _anim.SetInteger(Constants.STATE_PARAM, (int)ESwordState.Embedded);
+            gameObject.layer = LayerMask.NameToLayer(Constants.WEAPON_LAYER);
             _collider.size = new Vector2(_newSizeX, _collider.size.y);
-            _collider.isTrigger = true;
         }
     }
 
@@ -50,9 +50,7 @@ public class SwordController : WeaponController
         {
             _anim.SetInteger(Constants.STATE_PARAM, (int)ESwordState.Idle);
             _collider.size = new Vector2(_initSizeX, _collider.size.y);
-            _collider.isTrigger = false;
             gameObject.SetActive(false);
-            //Coi lại đoạn trigger
         }
     }
 
@@ -63,8 +61,6 @@ public class SwordController : WeaponController
 
     private void FixedUpdate()
     {
-        if (_collider.isTrigger) return;
-
         _rb.velocity = new((_isFacingRight) ? _swordVelo : -_swordVelo, 0f);
     }
 
