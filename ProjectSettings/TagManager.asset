@@ -12,6 +12,7 @@ TagManager:
   - Potion Blood
   - Potion Speed
   - Potion Damge
+  - Skull
   layers:
   - Default
   - TransparentFX
