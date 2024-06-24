@@ -12,15 +12,15 @@ public class PlayerAttack2State : PlayerBaseState
     {
         base.EnterState(baseCharacter);
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Attack2);
-        _playerSM.AttackEntryTime = Time.time;
-<<<<<<< Updated upstream
+        _playerSM.AttackEntryTime = Time.time
         _playerSM.Attack1State.EntryTime = 0;
         _entryTime = Time.time;
         _playerSM.StartCoroutine(_playerSM.BackToIdle());
-=======
         _playerSM.CurrentComboIndex = 2;
         SoundsManager.Instance.PlaySfx(Enums.ESounds.Attack2Sfx);
->>>>>>> Stashed changes
+        _playerSM.Attack1State.EntryTime = 0;
+        _entryTime = Time.time;
+        _playerSM.StartCoroutine(_playerSM.BackToIdle());
         Debug.Log("Player Atk2");
     }
 

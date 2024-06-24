@@ -8,12 +8,10 @@ public class PlayerAttack3State : PlayerBaseState
     {
         base.EnterState(baseCharacter);
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Attack3);
-<<<<<<< Updated upstream
         _playerSM.Attack2State.EntryTime = 0;
-=======
         _playerSM.CurrentComboIndex = 0;
         SoundsManager.Instance.PlaySfx(Enums.ESounds.Attack3Sfx);
->>>>>>> Stashed changes
+        _playerSM.Attack2State.EntryTime = 0;
         Debug.Log("Player Atk3");
     }
 
