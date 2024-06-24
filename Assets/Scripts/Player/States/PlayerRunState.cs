@@ -18,34 +18,20 @@ public class PlayerRunState : PlayerBaseState
 
     public override void Update()
     {
-        if (CheckIfCanThrowSword())
+        if (_playerSM.CheckIfCanThrowSword())
             _playerSM.ChangeState(_playerSM.ThrowState);
-        else if (CheckIfCanJump())
+        else if (_playerSM.CheckIfCanJump())
             _playerSM.ChangeState(_playerSM.JumpState);
-        else if (CheckIfCanIdle())
+        else if (_playerSM.CheckIfCanIdle())
             _playerSM.ChangeState(_playerSM.IdleState);
-        else if (CheckIfCanFall())
+        else if (_playerSM.CheckIfCanFall())
             _playerSM.ChangeState(_playerSM.FallState);
-    }
-
-    private bool CheckIfCanThrowSword()
-    {
-        return Input.GetKeyDown(KeyCode.E) && _playerSM.HasSword;
-    }
-
-    private bool CheckIfCanJump()
-    {
-        return Input.GetKeyDown(KeyCode.Space) && _playerSM.GroundDetected;
-    }
-
-    private bool CheckIfCanIdle()
-    {
-        return Mathf.Abs(_playerSM.DirX) == 0.0f && _playerSM.GroundDetected;
-    }
-
-    private bool CheckIfCanFall()
-    {
-        return !_playerSM.GroundDetected;
+        else if (_playerSM.CheckIfCanAttack(_playerSM.Attack2State.EntryTime, false))
+            _playerSM.ChangeState(_playerSM.Attack3State);
+        else if (_playerSM.CheckIfCanAttack(_playerSM.Attack1State.EntryTime, false))
+            _playerSM.ChangeState(_playerSM.Attack2State);
+        else if (_playerSM.CheckIfCanAttack(0, true))
+            _playerSM.ChangeState(_playerSM.Attack1State);
     }
 
     public override void FixedUpdate()

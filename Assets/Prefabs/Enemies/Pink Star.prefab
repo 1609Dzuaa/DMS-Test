@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 245839827238050488}
   - component: {fileID: 245839827238050495}
   - component: {fileID: 245839827238050494}
+  - component: {fileID: 7111893630154855423}
   m_Layer: 7
   m_Name: Pink Star
   m_TagString: Enemy
@@ -106,3 +107,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7111893630154855423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245839827238050493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10fd2c6cdd7913640b89d54e80ef7199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isFacingRight: 0
+  _healthPoint: 0
+  _playerCheck: {fileID: 0}
+  _groundCheck: {fileID: 0}
+  _wallCheck: {fileID: 0}
+  _enemySO: {fileID: 0}
+  _playerRef: {fileID: 0}

@@ -14,18 +14,15 @@ public class PlayerFallState : PlayerBaseState
 
     public override void ExitState()
     {
-        base.ExitState();
+        _playerSM.Rb2D.gravityScale = Constants.INITIAL_GRAVITY; //Reset Grav
     }
 
     public override void Update()
     {
-        if (CheckIfCanIdle())
+        if (_playerSM.CheckIfCanIdle())
             _playerSM.ChangeState(_playerSM.IdleState);
-    }
-
-    private bool CheckIfCanIdle()
-    {
-        return _playerSM.GroundDetected;
+        else if (_playerSM.CheckIfCanRun())
+            _playerSM.ChangeState(_playerSM.RunState);
     }
 
     public override void FixedUpdate()

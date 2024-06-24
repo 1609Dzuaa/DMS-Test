@@ -8,7 +8,6 @@ public class PlayerIdleState : PlayerBaseState
     {
         base.EnterState(baseCharacter);
         _playerSM.Rb2D.velocity = Vector2.zero;
-        _playerSM.Rb2D.gravityScale = Constants.INITIAL_GRAVITY;
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Idle);
         //Debug.Log("Player Idle");
     }
@@ -20,58 +19,20 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void Update()
     {
-        if (CheckIfCanThrowSword())
+        if (_playerSM.CheckIfCanThrowSword())
             _playerSM.ChangeState(_playerSM.ThrowState);
-        else if (CheckIfCanJump())
+        else if (_playerSM.CheckIfCanJump())
             _playerSM.ChangeState(_playerSM.JumpState);
-        else if (CheckIfCanFall())
+        else if (_playerSM.CheckIfCanFall())
             _playerSM.ChangeState(_playerSM.FallState);
-        else if (CheckIfCanRun())
+        else if (_playerSM.CheckIfCanRun())
             _playerSM.ChangeState(_playerSM.RunState);
-        else
-            CheckIfCanAttack();
-    }
-
-    private bool CheckIfCanThrowSword()
-    {
-        return Input.GetKeyDown(KeyCode.E) && _playerSM.HasSword;
-    }
-
-    private void CheckIfCanAttack()
-    {
-        if (!_playerSM.HasSword) return;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (_playerSM.CurrentComboIndex == 0) _playerSM.ChangeState(_playerSM.Attack1State);
-            else if (Time.time - _playerSM.AttackEntryTime <= _playerSM.AllowComboDuration)
-            {
-                _playerSM.ChangeState((_playerSM.CurrentComboIndex == 1) ? _playerSM.Attack2State : _playerSM.Attack3State);
-            }
-            else
-                _playerSM.CurrentComboIndex = 0; //Hết thgian combo thì reset CurrentComboIndex về 0
-        }
-        else
-        {
-            if (Time.time - _playerSM.AttackEntryTime > _playerSM.AllowComboDuration)
-                _playerSM.CurrentComboIndex = 0; //Hết thgian combo thì reset CurrentComboIndex về 0
-        }
-        //Debug.Log("Combo: " + _playerSM.CurrentComboIndex);
-    }
-
-    private bool CheckIfCanJump()
-    {
-        return Input.GetKeyDown(KeyCode.Space) && _playerSM.GroundDetected;
-    }
-
-    private bool CheckIfCanRun()
-    {
-        return _playerSM.DirX != 0 && _playerSM.GroundDetected;
-    }
-
-    private bool CheckIfCanFall()
-    {
-        return _playerSM.DirX == 0 && !_playerSM.GroundDetected;
+         else if (_playerSM.CheckIfCanAttack(_playerSM.Attack2State.EntryTime, false))
+            _playerSM.ChangeState(_playerSM.Attack3State);
+        else if (_playerSM.CheckIfCanAttack(_playerSM.Attack1State.EntryTime, false))
+            _playerSM.ChangeState(_playerSM.Attack2State);
+        else if (_playerSM.CheckIfCanAttack(0, true))
+            _playerSM.ChangeState(_playerSM.Attack1State);
     }
 
     public override void FixedUpdate()

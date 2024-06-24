@@ -75,10 +75,10 @@ public class SwordController : WeaponController
         //base.OnTriggerEnter2D(collision);
     }
 
-    protected override void OnTriggerStay2D(Collider2D collision)
+    /*protected override void OnTriggerStay2D(Collider2D collision)
     {
         //base.OnTriggerStay2D(collision);
-    }
+    }*/
 
     private void FixedUpdate()
     {

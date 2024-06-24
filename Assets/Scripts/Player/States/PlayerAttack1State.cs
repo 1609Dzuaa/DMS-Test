@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class PlayerAttack1State : PlayerBaseState
 {
+    private float _entryTime = 0;
+
+    public float EntryTime { get => _entryTime; set => _entryTime = value; }
+
     public override void EnterState(BaseCharacter baseCharacter)
     {
         base.EnterState(baseCharacter);
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Attack1);
         _playerSM.AttackEntryTime = Time.time;
-        _playerSM.CurrentComboIndex = 1;
+        _playerSM.StartCoroutine(_playerSM.BackToIdle());
+        _entryTime = Time.time;
         Debug.Log("Player Atk1");
     }
 
@@ -18,18 +23,7 @@ public class PlayerAttack1State : PlayerBaseState
         base.ExitState();
     }
 
-    public override void Update()
-    {
-        if (Time.time - _playerSM.AttackEntryTime < _playerSM.DelayUpdateAttack) return;
-
-        if (CheckIfCanAttack2())
-            _playerSM.ChangeState(_playerSM.Attack2State);
-    }
-
-    private bool CheckIfCanAttack2()
-    {
-        return Input.GetMouseButtonDown(0);
-    }
+    public override void Update() { }
 
     public override void FixedUpdate()
     {
