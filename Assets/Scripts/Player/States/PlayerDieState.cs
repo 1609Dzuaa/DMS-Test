@@ -9,6 +9,7 @@ public class PlayerDieState : PlayerBaseState
         base.EnterState(baseCharacter);
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Die);
         _playerSM.Anim.SetBool(Constants.DEAD_PARAM, true);
+        SoundsManager.Instance.PlaySfx(Enums.ESounds.DieSfx);
         Debug.Log("Player Die");
     }
 
