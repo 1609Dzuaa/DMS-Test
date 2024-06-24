@@ -18,12 +18,19 @@ public class PlayerRunState : PlayerBaseState
 
     public override void Update()
     {
-        if (CheckIfCanJump())
+        if (CheckIfCanThrowSword())
+            _playerSM.ChangeState(_playerSM.ThrowState);
+        else if (CheckIfCanJump())
             _playerSM.ChangeState(_playerSM.JumpState);
         else if (CheckIfCanIdle())
             _playerSM.ChangeState(_playerSM.IdleState);
         else if (CheckIfCanFall())
             _playerSM.ChangeState(_playerSM.FallState);
+    }
+
+    private bool CheckIfCanThrowSword()
+    {
+        return Input.GetKeyDown(KeyCode.E) && _playerSM.HasSword;
     }
 
     private bool CheckIfCanJump()
@@ -33,7 +40,7 @@ public class PlayerRunState : PlayerBaseState
 
     private bool CheckIfCanIdle()
     {
-        return Mathf.Abs(_playerSM.DirX) < 0.01f && _playerSM.GroundDetected;
+        return Mathf.Abs(_playerSM.DirX) == 0.0f && _playerSM.GroundDetected;
     }
 
     private bool CheckIfCanFall()

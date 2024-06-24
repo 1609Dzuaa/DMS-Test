@@ -9,6 +9,7 @@ public class PlayerThrowState : PlayerBaseState
         base.EnterState(baseCharacter);
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.ThrowSword);
         _playerSM.Anim.SetBool(Constants.SWORD_PARAM, false);
+        _playerSM.HasSword = false;
         Debug.Log("Player Throw");
     }
 
@@ -19,7 +20,27 @@ public class PlayerThrowState : PlayerBaseState
 
     public override void Update()
     {
-        base.Update();
+        if (CheckIfCanFall())
+            _playerSM.ChangeState(_playerSM.FallState);
+        else if (CheckIfCanIdle())
+            _playerSM.ChangeState(_playerSM.IdleState);
+        else if (CheckIfCanRun())
+            _playerSM.ChangeState(_playerSM.RunState);
+    }
+
+    private bool CheckIfCanFall()
+    {
+        return !_playerSM.GroundDetected;
+    }
+
+    private bool CheckIfCanIdle()
+    {
+        return Mathf.Abs(_playerSM.DirX) == 0.0f && _playerSM.GroundDetected;
+    }
+
+    private bool CheckIfCanRun()
+    {
+        return _playerSM.DirX != 0 && _playerSM.GroundDetected;
     }
 
     public override void FixedUpdate()

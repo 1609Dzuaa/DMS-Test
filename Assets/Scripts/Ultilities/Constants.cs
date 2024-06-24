@@ -5,12 +5,15 @@ using UnityEngine;
 public static class Constants 
 {
     #region CONSTANT STRINGS
-    public const string PLAYER_TAG = "Player";
+    public const string PLAYER_TAG_LAYER = "Player";
     public const string HORIZONTAL_AXIS = "Horizontal";
     public const string STATE_PARAM = "State";
     public const string SWORD_PARAM = "Sword";
     public const string DEAD_PARAM = "Dead";
-    public const string GROUND_TAG = "Ground";
+    public const string GROUND_TAG_LAYER = "Ground";
+    public const string WEAPON_LAYER = "Weapon";
+    public const string SWORD_TAG_LAYER = "Sword";
+    public const string ENEMY_TAG_LAYER = "Enemy";
     #endregion
 
     #region CONSTANT NUMBERS

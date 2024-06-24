@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7461723995763596463}
   m_Layer: 3
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,9 +122,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isFacingRight: 1
-  _damageDealt: 25
-  _swordVelo: 6
-  _newSizeX: 0.45
+  _damageDealt: 30
+  _swordVelo: 7
+  _newSizeX: 0.47
+  _offsetCollide: 0.5
 --- !u!61 &2693371372356305539
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1967759, y: 0.31857926}
+  m_Size: {x: 1.15, y: 0.31857926}
   m_EdgeRadius: 0
 --- !u!50 &7461723995763596463
 Rigidbody2D:

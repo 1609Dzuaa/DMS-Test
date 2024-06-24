@@ -24,6 +24,8 @@ public class PlayerIdleState : PlayerBaseState
             _playerSM.ChangeState(_playerSM.ThrowState);
         else if (CheckIfCanJump())
             _playerSM.ChangeState(_playerSM.JumpState);
+        else if (CheckIfCanFall())
+            _playerSM.ChangeState(_playerSM.FallState);
         else if (CheckIfCanRun())
             _playerSM.ChangeState(_playerSM.RunState);
         else
@@ -32,11 +34,13 @@ public class PlayerIdleState : PlayerBaseState
 
     private bool CheckIfCanThrowSword()
     {
-        return Input.GetKeyDown(KeyCode.E);
+        return Input.GetKeyDown(KeyCode.E) && _playerSM.HasSword;
     }
 
     private void CheckIfCanAttack()
     {
+        if (!_playerSM.HasSword) return;
+
         if (Input.GetMouseButtonDown(0))
         {
             if (_playerSM.CurrentComboIndex == 0) _playerSM.ChangeState(_playerSM.Attack1State);
@@ -63,6 +67,11 @@ public class PlayerIdleState : PlayerBaseState
     private bool CheckIfCanRun()
     {
         return _playerSM.DirX != 0 && _playerSM.GroundDetected;
+    }
+
+    private bool CheckIfCanFall()
+    {
+        return _playerSM.DirX == 0 && !_playerSM.GroundDetected;
     }
 
     public override void FixedUpdate()

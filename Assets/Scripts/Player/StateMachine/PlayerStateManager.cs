@@ -39,11 +39,15 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
     float entryTimeSB = 0f;
     float _dirX;
     bool _groundDetected;
+    bool _hasSword = true;
     int _currentComboIndex = 0;
     float _attackEntryTime;
     //Biến đếm giờ bắt đầu perform attack, để check xem còn trong thgian cho phép attack tiếp không
+    float _getHitEntryTime;
 
     public float DirX { get => _dirX; }
+
+    public bool HasSword { get => _hasSword; set => _hasSword = value; }
 
     public int CurrentComboIndex { get => _currentComboIndex; set => _currentComboIndex = value; }
 
@@ -52,6 +56,8 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
     public bool GroundDetected { get => _groundDetected; }
 
     public float AttackEntryTime { get => _attackEntryTime; set => _attackEntryTime = value; }
+
+    public float GetHitEntryTime { get => _getHitEntryTime; set => _getHitEntryTime = value; }
 
     public float DelayUpdateAttack { get => _delayUpdateAttack; }
 
@@ -129,6 +135,15 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
         Gizmos.DrawSphere(_groundCheck.position, _groundCheckRadius);
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag(Constants.SWORD_TAG_LAYER))
+        {
+            _hasSword = true;
+            _anim.SetBool(Constants.SWORD_PARAM, true);
+        }
+    }
+
     //Event của animations attack
     private void BackToIdle()
     {
@@ -191,6 +206,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
                 break;
         }
     }
+    //Event của animation phóng
     private void HandleThrowSword()
     {
         GameObject sword = Pool.Instance.GetObjectInPool(Enums.EPoolable.Sword);

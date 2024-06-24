@@ -104,7 +104,7 @@ public class EnemyStateManger : BaseCharacter, IDamageable
         _playerHit = Physics2D.Raycast(_playerCheck.position, (_isFacingRight) ? Vector2.right : Vector2.left, _enemySO.PlayerCheckDist, _enemySO.PlayerLayer);
         if (_playerHit)
         {
-            _playerDetected = _playerHit.collider.CompareTag(Constants.PLAYER_TAG);
+            _playerDetected = _playerHit.collider.CompareTag(Constants.PLAYER_TAG_LAYER);
             //Debug.Log((_playerDetected) ? "Founded" : "Not Found");
         }
     }
@@ -142,5 +142,11 @@ public class EnemyStateManger : BaseCharacter, IDamageable
     private void RigidbodySleep()
     {
         _rb.Sleep();
+    }
+
+    //Đặt ở animation Die
+    private void SelfDestroy()
+    {
+        Destroy(gameObject);
     }
 }
