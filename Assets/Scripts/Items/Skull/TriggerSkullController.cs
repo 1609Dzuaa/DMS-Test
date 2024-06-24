@@ -7,21 +7,24 @@ public class TriggerSkullController : MonoBehaviour
 {
     [SerializeField] private Animation Skull = null;
 
-    [SerializeField]  GameObject Effect = null ;
+    [SerializeField] GameObject Effect = null;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            if(Skull != null)
+            if (Skull != null)
             {
                 Skull.Play();
                 Destroy(other.gameObject);
-            } else
+            }
+            else
             {
                 Debug.Log("Error!");
             }
-            Instantiate(Effect, transform.position, Quaternion.identity, null);
+            GameObject skullVFX = Pool.Instance.GetObjectInPool(Enums.EPoolable.SkullVFX);
+            skullVFX.SetActive(true);
+            skullVFX.transform.position = transform.position;
             Destroy(gameObject);
         }
     }

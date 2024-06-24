@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateManager : BaseCharacter, IDamageable
+public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
 {
     //Bug 0 kích hoạt đc collider attack trong animation attack
 
@@ -20,6 +20,9 @@ public class PlayerStateManager : BaseCharacter, IDamageable
     [Header("Throw Position")]
     [SerializeField] Transform _throwPos;
 
+    [Header("Health")]
+    [SerializeField] int _maxHealth;
+
     #region States
     PlayerIdleState _idleState = new(); 
     PlayerRunState _runState = new();
@@ -32,7 +35,10 @@ public class PlayerStateManager : BaseCharacter, IDamageable
     PlayerDieState _dieState = new();
     PlayerThrowState _throwState = new();
     #endregion
-
+    int _currentHealth;
+    float initVelo = 0f;
+    float durationSB = 0f;
+    float entryTimeSB = 0f;
     float _dirX;
     bool _groundDetected;
     bool _hasSword = true;
@@ -51,6 +57,8 @@ public class PlayerStateManager : BaseCharacter, IDamageable
     public float Velo { get => _velo; }
 
     public float JumpForce { get => _jumpForce; }
+
+
 
     public PlayerIdleState IdleState { get => _idleState; set => _idleState = value; }
 
@@ -77,6 +85,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable
     {
         base.SetUpProperties();
         ChangeState(_idleState);
+        initVelo = Velo;
     }
 
     protected override void Update()
@@ -85,6 +94,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable
         HandleFlipSprite();
        //Debug.Log("HP: " + _healthPoint);
         //Debug.Log("Ground: " + _groundDetected);
+        HandleSpeedBuff();
     }
 
     private void HandleInput()
@@ -143,6 +153,39 @@ public class PlayerStateManager : BaseCharacter, IDamageable
 
     #region Animation Events
 
+    public void AbsorbSpeedBuff(float rate, float duration)
+    {
+        durationSB = duration;
+        _velo *= rate;
+        entryTimeSB = Time.time;
+    }
+
+    public void HandleBuff(Enums.EBuffs Type, float rate, float duration)
+    {
+        switch (Type)
+        {
+            case Enums.EBuffs.Speed:
+                durationSB = duration;
+                _velo *= rate;
+                entryTimeSB = Time.time;
+                break;
+            case Enums.EBuffs.Health:
+                if (_currentHealth < _maxHealth)
+                {
+                    _currentHealth += (int)rate;
+                    if (_currentHealth > _maxHealth)
+                    {
+                        _currentHealth = _maxHealth;
+                        Debug.Log("Health increased");
+                    }
+                    else
+                    {
+                        Debug.Log("Max Health");
+                    }
+                }
+                break;
+        }
+    }
     //Event của animation phóng
     private void HandleThrowSword()
     {
