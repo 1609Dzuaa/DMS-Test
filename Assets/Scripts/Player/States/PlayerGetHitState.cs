@@ -9,6 +9,7 @@ public class PlayerGetHitState : PlayerBaseState
         base.EnterState(baseCharacter);
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.GetHit);
         _playerSM.GetHitEntryTime = Time.time;
+        SoundsManager.Instance.PlaySfx(Enums.ESounds.GetHitSfx);
         Debug.Log("Player GH");
     }
 
