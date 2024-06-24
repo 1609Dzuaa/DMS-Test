@@ -9,6 +9,8 @@ public class PlayerAttack3State : PlayerBaseState
         base.EnterState(baseCharacter);
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Attack3);
         _playerSM.Attack2State.EntryTime = 0;
+        SoundsManager.Instance.PlaySfx(Enums.ESounds.Attack3Sfx);
+        _playerSM.Attack2State.EntryTime = 0;
         Debug.Log("Player Atk3");
     }
 

@@ -94,7 +94,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
         HandleFlipSprite();
        //Debug.Log("HP: " + _healthPoint);
         //Debug.Log("Ground: " + _groundDetected);
-        HandleSpeedBuff();
+        //HandleSpeedBuff();
     }
 
     private void HandleInput()

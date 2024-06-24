@@ -4,7 +4,7 @@ using UnityEngine;
 using static Enums;
 
 [System.Serializable]
-public struct Sounds
+public class Sounds
 {
     public ESounds _sfxName;
     public AudioClip _clip;
@@ -14,7 +14,7 @@ public class SoundsManager : BaseSingleton<SoundsManager>
 {
     [SerializeField] List<Sounds> _listSounds = new();
     private AudioSource _source;
-    private Dictionary<ESounds, Sounds> _dictSounds;
+    private Dictionary<ESounds, Sounds> _dictSounds = new();
 
     protected override void Awake()
     {
@@ -28,7 +28,12 @@ public class SoundsManager : BaseSingleton<SoundsManager>
         foreach(var sound in _listSounds)
         {
             if (!_dictSounds.ContainsKey(sound._sfxName))
+            {
                 _dictSounds.Add(sound._sfxName, sound);
+                _dictSounds[sound._sfxName] = new Sounds();
+                _dictSounds[sound._sfxName]._clip = sound._clip;
+            }
+               
         }
         //EventsManager.Instance.SubcribeToAnEvent(GameEvents.OnPlaySfx, PlaySfx);
     }
@@ -40,7 +45,17 @@ public class SoundsManager : BaseSingleton<SoundsManager>
 
     public void PlaySfx(ESounds sfxName)
     {
-        _source.clip =_dictSounds[sfxName]._clip;
+        if(_source == null)
+        {
+            Debug.Log("Source null");
+        }
+
+        if(_dictSounds[sfxName]._clip == null)
+        {
+
+        }
+        Debug.Log("Play" + sfxName);
+        _source.clip = _dictSounds[sfxName]._clip;
         _source.Play();
     }
 }

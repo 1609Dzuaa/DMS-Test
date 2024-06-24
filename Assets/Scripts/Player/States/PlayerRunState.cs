@@ -8,6 +8,7 @@ public class PlayerRunState : PlayerBaseState
     {
         base.EnterState(baseCharacter);
         _playerSM.Anim.SetInteger(Constants.STATE_PARAM, (int)Enums.EPlayerState.Run);
+        SoundsManager.Instance.PlaySfx(Enums.ESounds.RunSfx);
         Debug.Log("Player Run");
     }
 

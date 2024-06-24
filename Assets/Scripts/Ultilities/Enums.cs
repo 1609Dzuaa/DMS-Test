@@ -54,8 +54,22 @@ public static class Enums
     {
         Speed = 0,
         Health = 1,
+    }
+
     public enum ESounds
     {
+        RunSfx = 0,
+        JumpSfx = 1,
+        Attack1Sfx = 2,
+        Attack2Sfx = 3,
+        Attack3Sfx = 4,
+        DieSfx = 5,
+        GetHitSfx = 6,
 
+    }
+
+    public enum SHaders
+    {
+        CloudSd = 0,
     }
 }
