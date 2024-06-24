@@ -143,21 +143,18 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
         ChangeState((_healthPoint) > 0 ? _getHitState : _dieState);
     }
 
+    private void HandleSpeedBuff()
+    {
+        if (Time.time - entryTimeSB > durationSB)
+            _velo = initVelo;
+    }
+
     //Gọi coroutine ở 2 state atk1, atk2 để trở lại idle sau khi xong animation
     public IEnumerator BackToIdle()
     {
         yield return new WaitForSeconds(_delayBackToIdle);
 
         ChangeState(_idleState);
-    }
-
-    #region Animation Events
-
-    public void AbsorbSpeedBuff(float rate, float duration)
-    {
-        durationSB = duration;
-        _velo *= rate;
-        entryTimeSB = Time.time;
     }
 
     public void HandleBuff(Enums.EBuffs Type, float rate, float duration)
@@ -186,6 +183,9 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
                 break;
         }
     }
+
+    #region Animation Events
+
     //Event của animation phóng
     private void HandleThrowSword()
     {
