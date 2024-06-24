@@ -48,3 +48,15 @@ MonoBehaviour:
   - _ePoolable: 0
     _GObjPoolable: {fileID: 2760580309233777972, guid: 59691bc7a0d49d24b843bfa9dc5eb5a4, type: 3}
     _ammount: 1
+  - _ePoolable: 1
+    _GObjPoolable: {fileID: 8588626047682490165, guid: 2dc4a95eb1df2d64796e630ed53f4968, type: 3}
+    _ammount: 8
+  - _ePoolable: 3
+    _GObjPoolable: {fileID: 5275693575360308763, guid: 732c9e357a9558b4ea25ece61822ef29, type: 3}
+    _ammount: 1
+  - _ePoolable: 2
+    _GObjPoolable: {fileID: 7357657993442565973, guid: 37f56ce039786274d8c412dc4541d691, type: 3}
+    _ammount: 6
+  - _ePoolable: 3
+    _GObjPoolable: {fileID: 5275693575360308763, guid: 732c9e357a9558b4ea25ece61822ef29, type: 3}
+    _ammount: 2

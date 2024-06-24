@@ -38,12 +38,20 @@ public static class Enums
     public enum EPoolable
     {
         Sword = 0,
-
+        CoinVFX = 1,
+        PotionVFX = 2,  
+        SkullVFX = 3,
     }
 
     public enum EEvents
     {
         SwordOnReceiveDirection = 0,
 
+    }
+
+    public enum EBuffs
+    {
+        Speed = 0,
+        Health = 1,
     }
 }
