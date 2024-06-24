@@ -47,4 +47,9 @@ public static class Enums
         SwordOnReceiveDirection = 0,
 
     }
+
+    public enum ESounds
+    {
+
+    }
 }
