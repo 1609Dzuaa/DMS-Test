@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,5 +34,18 @@ public class BaseCharacter : BaseObject
     protected virtual void FixedUpdate()
     {
         _state?.FixedUpdate();
+    }
+
+    //Event của animation attack wakeup rb khi attack tránh TH:
+    //Player và quái đứng yên nhưng kh bắt đc trigger collision
+    protected void WakeUpRigidbody()
+    {
+        _rb.WakeUp();
+    }
+
+    //Tắt ở frame attack collider bị disable để 0 có collision, tránh OnTrigger bị gọi lần nữa
+    protected void RigidbodySleep()
+    {
+        _rb.Sleep();
     }
 }

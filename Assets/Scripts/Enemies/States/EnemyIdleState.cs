@@ -24,7 +24,7 @@ public class EnemyIdleState : EnemyBaseState
     public override void Update()
     {
         //Cho TH chạy hết animation attack r mới cho update
-        if (Time.time - _entryTime <= 0.7f) return;
+        if (Time.time - _entryTime <= 0.75f) return;
 
         if (CheckIfCanAttack())
             _enemySM.ChangeState(_enemySM.AttackState);

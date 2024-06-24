@@ -19,13 +19,8 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void Update()
     {
-        if (CheckIfCanFall())
+        if (_playerSM.CheckIfCanFall())
             _playerSM.ChangeState(_playerSM.FallState);
-    }
-
-    private bool CheckIfCanFall()
-    {
-        return _playerSM.Rb2D.velocity.y < 0f;
     }
 
     public override void FixedUpdate()
