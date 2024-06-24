@@ -17,9 +17,6 @@ public class PlayerAttack2State : PlayerBaseState
         _entryTime = Time.time;
         _playerSM.StartCoroutine(_playerSM.BackToIdle());
         SoundsManager.Instance.PlaySfx(Enums.ESounds.Attack2Sfx);
-        _playerSM.Attack1State.EntryTime = 0;
-        _entryTime = Time.time;
-        _playerSM.StartCoroutine(_playerSM.BackToIdle());
         Debug.Log("Player Atk2");
     }
 

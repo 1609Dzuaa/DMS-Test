@@ -65,6 +65,9 @@ public static class Enums
         Attack3Sfx = 4,
         DieSfx = 5,
         GetHitSfx = 6,
+        COinSfx = 7,
+        PotionSfx = 8,
+
 
     }
 
