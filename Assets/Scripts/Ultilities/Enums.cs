@@ -54,6 +54,8 @@ public static class Enums
     {
         Speed = 0,
         Health = 1,
+    }
+
     public enum ESounds
     {
 

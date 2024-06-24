@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Dolphin
+  m_Controller: {fileID: 9100000, guid: a040a26aba039644e8c847ccd5cae1ce, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 28a62431635014448815f2b41f4adde1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e8961925e6af4da43b6fe7937b4241fc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 240b690afed9ee6438d41b8648c91a83, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f795af6182bb1614bac705a585ac8ff0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9d12a01af1fefb24fa04a4b7cafcd890, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5f67388ea8427294d9880d0bd7a9e758, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 857844b0737977f49a1352764239338e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e4f3d0c4cc1d5094bb9141897b291901, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ad247a379157094488df1000f7d43801, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3218938388edfca4983222c4f7dd28d6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5551a861578372244a1efa2c1b070550, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 65a86c58bff96be4494520672a66b15f, type: 2}
