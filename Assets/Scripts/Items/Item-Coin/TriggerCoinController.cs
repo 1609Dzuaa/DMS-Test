@@ -15,16 +15,16 @@ public class TriggerCoinController : MonoBehaviour
             if (Coin != null)
             {
                 Coin.Play(); // Phát animation c?a ??ng xu
-                Destroy(Coin.gameObject); // Phá h?y GameObject ch?a animation sau khi hoàn thành
+                Destroy(Coin.gameObject); // Phá h?y gameobject c?a ??ng xu
             }
             else
             {
                 Debug.LogWarning("Error!");
             }
-
-            Instantiate(Effect, transform.position, Quaternion.identity, null);
-
-            Destroy(gameObject); // Phá h?y ??i t??ng ch?a script sau khi x? lý va ch?m
+            GameObject coinVFX = Pool.Instance.GetObjectInPool(Enums.EPoolable.CoinVFX);
+            coinVFX.SetActive(true);
+            coinVFX.transform.position = transform.position;
+            Destroy(gameObject); // Phá h?y ??ng x? lí va ch?m
         }
-    }
+    }   
 }

@@ -12,27 +12,6 @@ public struct PoolableObject
     public int _ammount;
 }
 
-[System.Serializable]
-public struct BulletPiecePair
-{
-    public EPoolable _bulletType;
-    public GameObject _pair1;
-    public GameObject _pair2;
-    public int _ammount;
-
-    public BulletPiecePair(EPoolable bulletType, GameObject pair1, GameObject pair2, int ammount)
-    {
-        _bulletType = bulletType;
-        _pair1 = pair1;
-        _pair2 = pair2;
-        _ammount = ammount;
-    }
-
-    public GameObject Pair1 { get { return _pair1; } }
-
-    public GameObject Pair2 { get { return _pair2; } }
-}
-
 public class Pool : BaseSingleton<Pool>
 {
     [SerializeField] List<PoolableObject> _listPoolableObj = new();

@@ -38,7 +38,9 @@ public static class Enums
     public enum EPoolable
     {
         Sword = 0,
-
+        CoinVFX = 1,
+        PotionVFX = 2,  
+        SkullVFX = 3,
     }
 
     //Tạo 1 event khi quái chết thì thông báo cho kiếm khỏi nhận parent (nếu lỡ bị ghim vào quái)
@@ -48,6 +50,10 @@ public static class Enums
 
     }
 
+    public enum EBuffs
+    {
+        Speed = 0,
+        Health = 1,
     public enum ESounds
     {
 

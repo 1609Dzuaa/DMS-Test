@@ -6,12 +6,16 @@
     {
         [SerializeField] private Animation Potion = null;
 
-        [SerializeField] GameObject Effect = null;
-            
+        [SerializeField] float rate;
 
+        [SerializeField] float duration;
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Player"))
+        if (other != null)
+        {
+            //other.GetComponent<ISpeedBuff>()?.AbsorbSpeedBuff(rate, duration);
+        }
+            /*if (other.CompareTag("Player"))
             {
                 if( Potion != null )
                 {
@@ -33,12 +37,12 @@
                         character.IncreaseDamage(5);        
                     } else if(gameObject.CompareTag("Potion Speed"))
                     {
-                        character.IncreaseSpeed(5);
+                        character.IncreaseSpeed(5);     
                     }
-                }
-            
-                Instantiate( Effect, transform.position, Quaternion.identity ,null );
-                Destroy(gameObject);
-            }
+                } */
+                GameObject potionVFX = Pool.Instance.GetObjectInPool(Enums.EPoolable.PotionVFX);
+                potionVFX.SetActive(true);
+                potionVFX.transform.position = transform.position;      
+                Destroy(gameObject); 
         }
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1969499537976771589}
   - component: {fileID: 1969499537976771588}
   - component: {fileID: 1969499537976771611}
-  - component: {fileID: 6109448418325883176}
+  - component: {fileID: 4408928012719520664}
   m_Layer: 0
   m_Name: Potion Speed
   m_TagString: Untagged
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1744619643
-  m_SortingLayer: 2
+  m_SortingLayerID: 296698417
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9c04d3d6cee25494c9024e13de5565c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4624219, y: 0.81116164}
   m_EdgeRadius: 0
---- !u!114 &6109448418325883176
+--- !u!114 &4408928012719520664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,8 +143,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1969499537976771591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b770d3ddcd410428cc5e7e193d55fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 991b887995235b54a887e76bc9ee1afb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Potion: {fileID: 0}
-  Effect: {fileID: 7357657993442565973, guid: 37f56ce039786274d8c412dc4541d691, type: 3}
+  type: 0
+  rate: 1.8
+  duration: 5
