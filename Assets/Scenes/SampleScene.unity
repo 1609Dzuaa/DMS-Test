@@ -82047,7 +82047,7 @@ PrefabInstance:
       objectReference: {fileID: 2071515806}
     - target: {fileID: 3591032775638251670, guid: e3fd963aea4466a419003d3fea9ba3f7, type: 3}
       propertyPath: _healthPoint
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04cb96574be13ce4c98ccea5b11bc2b4, type: 3}
@@ -105058,11 +105058,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7254293083564029845, guid: 6875e11a839934b4cba2f544887c84a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.34
+      value: 3.6
       objectReference: {fileID: 0}
     - target: {fileID: 7254293083564029845, guid: 6875e11a839934b4cba2f544887c84a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.37
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7254293083564029845, guid: 6875e11a839934b4cba2f544887c84a9, type: 3}
       propertyPath: m_LocalPosition.z

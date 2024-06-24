@@ -60,6 +60,7 @@ public class EnemyStateManger : BaseCharacter, IDamageable
         base.Update();
         DrawRayDetectGround();
         DrawRayDetectWall();
+        Debug.Log("HP: " + _healthPoint);
     }
 
     protected void DrawRayDetectWall()
@@ -94,7 +95,7 @@ public class EnemyStateManger : BaseCharacter, IDamageable
         PlayerCheck();
         GroundCheck();
         WallCheck();
-        Debug.Log("Rb Sleep?: " + _rb.IsSleeping());
+        //Debug.Log("Rb Sleep?: " + _rb.IsSleeping());
     }
 
     protected virtual void PlayerCheck()
@@ -123,25 +124,13 @@ public class EnemyStateManger : BaseCharacter, IDamageable
     {
         _healthPoint -= damageTaken;
         ChangeState((_healthPoint) > 0 ? _hitState : _dieState);
+        Debug.Log("Taken");
     }
 
     //Event của animation attack đặt ở cuối frame
     private void BackToIdle()
     {
         ChangeState(_idleState);
-    }
-
-    //Event của animation attack wakeup rb khi attack tránh TH:
-    //Player và quái đứng yên nhưng kh bắt đc trigger collision
-    private void WakeUpRigidbody()
-    {
-        _rb.WakeUp();
-    }
-
-    //Tắt ở frame attack collider bị disable để 0 có collision, tránh OnTrigger bị gọi lần nữa
-    private void RigidbodySleep()
-    {
-        _rb.Sleep();
     }
 
     //Đặt ở animation Die

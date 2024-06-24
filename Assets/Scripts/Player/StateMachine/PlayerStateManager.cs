@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
 {
+    //Bug 0 kích hoạt đc collider attack trong animation attack
+
     [Header("Number Fields")]
     [SerializeField] float _velo;
     [SerializeField] float _jumpForce;
     [SerializeField] float _groundCheckRadius;
-    [SerializeField] float _delayUpdateAttack;
     [SerializeField] float _allowComboDuration;
+    [SerializeField] float _delayBackToIdle;
 
     [Header("GroundCheck Fields")]
     [SerializeField] LayerMask _groundLayer;
@@ -40,7 +42,6 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
     float _dirX;
     bool _groundDetected;
     bool _hasSword = true;
-    int _currentComboIndex = 0;
     float _attackEntryTime;
     //Biến đếm giờ bắt đầu perform attack, để check xem còn trong thgian cho phép attack tiếp không
     float _getHitEntryTime;
@@ -49,17 +50,9 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
 
     public bool HasSword { get => _hasSword; set => _hasSword = value; }
 
-    public int CurrentComboIndex { get => _currentComboIndex; set => _currentComboIndex = value; }
-
-    public float AllowComboDuration { get => _allowComboDuration; }
-
-    public bool GroundDetected { get => _groundDetected; }
-
     public float AttackEntryTime { get => _attackEntryTime; set => _attackEntryTime = value; }
 
     public float GetHitEntryTime { get => _getHitEntryTime; set => _getHitEntryTime = value; }
-
-    public float DelayUpdateAttack { get => _delayUpdateAttack; }
 
     public float Velo { get => _velo; }
 
@@ -99,7 +92,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
     {
         base.Update();
         HandleFlipSprite();
-        Debug.Log("HP: " + _healthPoint);
+       //Debug.Log("HP: " + _healthPoint);
         //Debug.Log("Ground: " + _groundDetected);
         HandleSpeedBuff();
     }
@@ -144,17 +137,21 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
         }
     }
 
-    //Event của animations attack
-    private void BackToIdle()
-    {
-        ChangeState(_idleState);
-    }
-
     public void HandleTakeDamage(float damageTaken)
     {
         _healthPoint -= damageTaken;
         ChangeState((_healthPoint) > 0 ? _getHitState : _dieState);
     }
+
+    //Gọi coroutine ở 2 state atk1, atk2 để trở lại idle sau khi xong animation
+    public IEnumerator BackToIdle()
+    {
+        yield return new WaitForSeconds(_delayBackToIdle);
+
+        ChangeState(_idleState);
+    }
+
+    #region Animation Events
 
     public void AbsorbSpeedBuff(float rate, float duration)
     {
@@ -162,23 +159,6 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
         _velo *= rate;
         entryTimeSB = Time.time;
     }
-
-    /*public void AsorbHealthBuff(int amount)
-    {
-        if(_currentHealth < _maxHealth)
-        {
-            _currentHealth += amount;
-            if(_currentHealth > _maxHealth)
-            {
-                _currentHealth = _maxHealth;
-                Debug.Log("Health increased");
-            }
-            else
-            {
-                Debug.Log("Max Health");
-            }
-        }
-    }*/
 
     public void HandleBuff(Enums.EBuffs Type, float rate, float duration)
     {
@@ -215,12 +195,55 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
         EventsManager.Instance.NotifyObservers(Enums.EEvents.SwordOnReceiveDirection, _isFacingRight);
     }
 
-    private void HandleSpeedBuff()
+    //Event của Animation Attack 3
+    //Đặt ở cuối Frame
+    private void AnimEventBackToIdle()
     {
-        if( Time.time - entryTimeSB >= durationSB)
-        {
-            _velo = initVelo;
-            Debug.Log("Speed out");
-        }
+        ChangeState(_idleState);
     }
+
+    #endregion
+
+    #region Check Change States
+
+    public bool CheckIfCanIdle()
+    {
+        return _dirX == 0 && _groundDetected;
+    }
+
+    public bool CheckIfCanAttack(float AtkEntryTime, bool isFirstAtk)
+    {
+        //Tham số đầu tiên truyền vào entryTime của state Attack đó
+        //Để check có đang trong thgian cho phép combo để chuyển sang state Attack + 1
+
+        //First Atk bị block ở đây
+        if (isFirstAtk)
+            return Input.GetMouseButtonDown(0) && _groundDetected;
+
+        return Input.GetMouseButtonDown(0) && AtkEntryTime != 0
+            && Time.time - AtkEntryTime <= _allowComboDuration
+            && _groundDetected;
+    }
+
+    public bool CheckIfCanThrowSword()
+    {
+        return Input.GetKeyDown(KeyCode.E) && _hasSword;
+    }
+
+    public bool CheckIfCanJump()
+    {
+        return Input.GetKeyDown(KeyCode.Space) && _groundDetected;
+    }
+
+    public bool CheckIfCanRun()
+    {
+        return _dirX != 0 && _groundDetected;
+    }
+
+    public bool CheckIfCanFall()
+    {
+        return _rb.velocity.y < -0.1f && !_groundDetected;
+    }
+
+    #endregion
 }
