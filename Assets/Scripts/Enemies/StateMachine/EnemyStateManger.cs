@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
+using UnityEngine.UI;
 
 public class EnemyStateManger : BaseCharacter, IDamageable
 {
@@ -24,6 +26,7 @@ public class EnemyStateManger : BaseCharacter, IDamageable
     protected bool _groundDetected;
     protected bool _wallDetected;
     protected float _entryTime;
+    //protected bool _isSwordStuckInside;
 
     public EnemyIdleState IdleState { get => _idleState; set=>_idleState = value; }
 
@@ -122,7 +125,7 @@ public class EnemyStateManger : BaseCharacter, IDamageable
 
     public void HandleTakeDamage(float damageTaken)
     {
-        _healthPoint -= damageTaken;
+        HandleHealthPoint(damageTaken);
         ChangeState((_healthPoint) > 0 ? _hitState : _dieState);
         Debug.Log("Taken");
     }

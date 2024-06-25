@@ -94,7 +94,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
         HandleFlipSprite();
        //Debug.Log("HP: " + _healthPoint);
         //Debug.Log("Ground: " + _groundDetected);
-        //HandleSpeedBuff();
+        HandleSpeedBuff();
     }
 
     private void HandleInput()
@@ -140,6 +140,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
     public void HandleTakeDamage(float damageTaken)
     {
         _healthPoint -= damageTaken;
+        HandleHealthPoint(damageTaken);
         ChangeState((_healthPoint) > 0 ? _getHitState : _dieState);
     }
 

@@ -22,7 +22,7 @@ public class TrapAutomatic : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        /*(GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -31,6 +31,6 @@ public class TrapAutomatic : MonoBehaviour
         else
         {
             Debug.LogWarning("Rigidbody2D not found on bullet prefab.");
-        }
+        }*/
     }
 }
