@@ -4,7 +4,7 @@ using Unity.Burst.CompilerServices;
 using UnityEngine;
 using static Enums;
 
-public class SwordController : WeaponController
+public class SwordController : PWeaponController
 {
     [SerializeField] float _swordVelo;
     [SerializeField] float _newSizeX;
@@ -15,6 +15,7 @@ public class SwordController : WeaponController
 
     protected override void SetUpProperties()
     {
+        base.SetUpProperties();
         _initSizeX = _collider.size.x;
     }
 
@@ -31,8 +32,9 @@ public class SwordController : WeaponController
         _anim.SetInteger(Constants.STATE_PARAM, (int)ESwordState.Idle);
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         EventsManager.Instance.UnSubcribeToAnEvent(EEvents.SwordOnReceiveDirection, ReceiveDirection);
     }
 

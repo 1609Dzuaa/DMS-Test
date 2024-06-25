@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 521443151892619692}
   - component: {fileID: 521443151892619695}
   - component: {fileID: 521443151892619682}
-  - component: {fileID: 3414643301263875900}
+  - component: {fileID: 3961569120452474271}
   m_Layer: 0
   m_Name: Potion Damge
   m_TagString: Untagged
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1744619643
-  m_SortingLayer: 2
+  m_SortingLayerID: 296698417
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0071c4e67b887ac46978e717346b4c0f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5793295, y: 0.87894}
   m_EdgeRadius: 0
---- !u!114 &3414643301263875900
+--- !u!114 &3961569120452474271
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,8 +143,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 521443151892619694}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b770d3ddcd410428cc5e7e193d55fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fd7a10378d62b048a15d499aae6d6d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Potion: {fileID: 0}
-  Effect: {fileID: 7357657993442565973, guid: 37f56ce039786274d8c412dc4541d691, type: 3}
+  type: 2
+  rate: 2
+  duration: 5

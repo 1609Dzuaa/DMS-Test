@@ -5,7 +5,8 @@ using UnityEngine;
 public class WeaponController : BaseObject
 {
     [SerializeField] protected float _damageDealt;
-    protected bool _activated; //xem lại sao bị thừa ?
+    protected bool _activated;
+    //Bug here, nếu 0 có th này thì trigger nhiều lần, nếu có thì atk2 của player 0 đc gọi
 
     protected virtual void OnEnable()
     {
@@ -14,7 +15,7 @@ public class WeaponController : BaseObject
         //Debug.Log("En");
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         _activated = false;
         //Debug.Log("Dis");

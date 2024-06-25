@@ -127,8 +127,10 @@ public class EnemyStateManger : BaseCharacter, IDamageable
     {
         HandleHealthPoint(damageTaken);
         ChangeState((_healthPoint) > 0 ? _hitState : _dieState);
-        Debug.Log("Taken");
+        //Debug.Log("Taken");
     }
+
+    #region Animation Events
 
     //Event của animation attack đặt ở cuối frame
     private void BackToIdle()
@@ -141,4 +143,6 @@ public class EnemyStateManger : BaseCharacter, IDamageable
     {
         Destroy(gameObject);
     }
+
+    #endregion
 }

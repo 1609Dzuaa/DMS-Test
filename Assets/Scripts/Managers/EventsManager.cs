@@ -8,6 +8,8 @@ public class EventsManager : BaseSingleton<EventsManager>
 {
     private Dictionary<EEvents, Action<object>> _dictEvents = new();
     private readonly Action<object> SwordOnReceiveDirection;
+    private readonly Action<object> PlayerOnReceiveDamageBuff;
+    private readonly Action<object> PlayerOnDeDamageBuff;
 
     protected override void Awake()
     {
@@ -19,6 +21,8 @@ public class EventsManager : BaseSingleton<EventsManager>
     private void AddEventsToDictionary()
     {
         HandleAddEventsToDictionary(EEvents.SwordOnReceiveDirection, SwordOnReceiveDirection);
+        HandleAddEventsToDictionary(EEvents.PlayerOnReceiveDamageBuff, PlayerOnReceiveDamageBuff);
+        HandleAddEventsToDictionary(EEvents.PlayerOnDeDamageBuff, PlayerOnDeDamageBuff);
     }
 
     private void HandleAddEventsToDictionary(EEvents events, Action<object> callback)
