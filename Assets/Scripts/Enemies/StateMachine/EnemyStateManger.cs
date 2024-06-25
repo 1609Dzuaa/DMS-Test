@@ -125,7 +125,7 @@ public class EnemyStateManger : BaseCharacter, IDamageable
 
     public void HandleTakeDamage(float damageTaken)
     {
-        HandleHealthPoint(damageTaken);
+        HandleHealthPoint(damageTaken, false);
         ChangeState((_healthPoint) > 0 ? _hitState : _dieState);
         //Debug.Log("Taken");
     }

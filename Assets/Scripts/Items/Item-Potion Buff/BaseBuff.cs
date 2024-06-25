@@ -16,8 +16,8 @@ public class BaseBuff : MonoBehaviour
         if (other != null)
         {
             other.GetComponent<IBuffable>()?.HandleBuff(type, rate, duration);
+            HandleSpawnVFX();
         }
-        HandleSpawnVFX();
     }
 
     protected void HandleSpawnVFX(/*EPoolable vfxName | Dùng khi muốn spawn vfx khác*/)
