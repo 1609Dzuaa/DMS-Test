@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class UIHPController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Transform _targetPos;
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position = _targetPos.position;
     }
 }

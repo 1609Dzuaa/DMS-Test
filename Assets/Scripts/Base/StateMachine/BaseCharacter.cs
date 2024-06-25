@@ -17,13 +17,14 @@ public class BaseCharacter : BaseObject
     [Header("HP UI Ref")]
     [SerializeField] protected Image _hpFill; //Thanh máu để fill
     [SerializeField] protected GameObject _hpBar; //Gobj chứa thanh máu
-    [SerializeField] protected float _fillSpeed; 
+    [SerializeField] protected float _fillSpeed;
+
+    [Header("Character's Weapon")]
+    [SerializeField] protected WeaponController _weaponCtrl;
 
     #endregion
 
     #region PUBLIC FIELDS
-
-    public float HealthPoint { get => _healthPoint; set => _healthPoint = value; }
 
     public GameObject HPBar { get => _hpBar; set => _hpBar = value; }
 
@@ -44,7 +45,6 @@ public class BaseCharacter : BaseObject
     protected override void Update()
     {
         _state?.Update();
-        HanleHPBarRotation();
     }
 
     protected virtual void FixedUpdate()
@@ -52,17 +52,9 @@ public class BaseCharacter : BaseObject
         _state?.FixedUpdate();
     }
 
-    protected void HanleHPBarRotation()
+    protected void HandleHealthPoint(float damageTaken, bool isIncrease)
     {
-        //Cố định 0 cho thanh hp rotate khi parent object rotate
-        if (_hpBar != null)
-            if (_hpBar.transform.eulerAngles.y > 0)
-                _hpBar.transform.eulerAngles = new(_hpBar.transform.eulerAngles.x, 0f, _hpBar.transform.eulerAngles.z);
-    }
-
-    protected void HandleHealthPoint(float damageTaken)
-    {
-        _healthPoint -= damageTaken;
+        _healthPoint += isIncrease ? damageTaken : -damageTaken;
         Mathf.Clamp(_healthPoint, 0f, _baseHP);
         _hpFill.DOFillAmount(_healthPoint / _baseHP, _fillSpeed);
     }
@@ -80,6 +72,13 @@ public class BaseCharacter : BaseObject
     protected void RigidbodySleep()
     {
         _rb.Sleep();
+    }
+
+    //Đặt ở frame cuối của attack animation để reset lại biến bool
+    //Mục đích biến bool đó là để chỉ gọi hàm nhận dmg trong trigger của vũ khí đó 1 lần duy nhất
+    protected void ResetActivated()
+    {
+        _weaponCtrl.ResetActivated();
     }
 
     #endregion

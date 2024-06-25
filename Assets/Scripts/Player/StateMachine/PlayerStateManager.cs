@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
 {
@@ -20,9 +21,6 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
     [Header("Throw Position")]
     [SerializeField] Transform _throwPos;
 
-    [Header("Health")]
-    [SerializeField] int _maxHealth;
-
     #region States
     PlayerIdleState _idleState = new(); 
     PlayerRunState _runState = new();
@@ -35,7 +33,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
     PlayerDieState _dieState = new();
     PlayerThrowState _throwState = new();
     #endregion
-    int _currentHealth;
+
     float initVelo = 0f;
     float durationSB = 0f;
     float entryTimeSB = 0f;
@@ -143,7 +141,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
     public void HandleTakeDamage(float damageTaken)
     {
         _healthPoint -= damageTaken;
-        HandleHealthPoint(damageTaken);
+        HandleHealthPoint(damageTaken, false);
         ChangeState((_healthPoint) > 0 ? _getHitState : _dieState);
     }
 
@@ -171,19 +169,8 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
                 entryTimeSB = Time.time;
                 break;
             case Enums.EBuffs.Health:
-                if (_currentHealth < _maxHealth)
-                {
-                    _currentHealth += (int)rate;
-                    if (_currentHealth > _maxHealth)
-                    {
-                        _currentHealth = _maxHealth;
-                        Debug.Log("Health increased");
-                    }
-                    else
-                    {
-                        Debug.Log("Max Health");
-                    }
-                }
+                HandleHealthPoint(rate * _healthPoint, true);
+                Debug.Log("HP Buff " + _healthPoint);
                 break;
             case Enums.EBuffs.Damage:
                 _entryTimeDB = Time.time;
