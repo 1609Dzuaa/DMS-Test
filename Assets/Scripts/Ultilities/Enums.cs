@@ -47,13 +47,15 @@ public static class Enums
     public enum EEvents
     {
         SwordOnReceiveDirection = 0,
-
+        PlayerOnReceiveDamageBuff = 1,
+        PlayerOnDeDamageBuff = 2,
     }
 
     public enum EBuffs
     {
         Speed = 0,
         Health = 1,
+        Damage = 2,
     }
 
     public enum ESounds

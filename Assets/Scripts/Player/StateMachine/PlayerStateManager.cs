@@ -39,6 +39,8 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
     float initVelo = 0f;
     float durationSB = 0f;
     float entryTimeSB = 0f;
+    float _entryTimeDB = 0f;
+    float _durationDB = 0f;
     float _dirX;
     bool _groundDetected;
     bool _hasSword = true;
@@ -94,7 +96,8 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
         HandleFlipSprite();
        //Debug.Log("HP: " + _healthPoint);
         //Debug.Log("Ground: " + _groundDetected);
-        HandleSpeedBuff();
+        HandleSpeedBuffDuration();
+        HandleDMGBuffDuration();
     }
 
     private void HandleInput()
@@ -144,7 +147,7 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
         ChangeState((_healthPoint) > 0 ? _getHitState : _dieState);
     }
 
-    private void HandleSpeedBuff()
+    private void HandleSpeedBuffDuration()
     {
         if (Time.time - entryTimeSB > durationSB)
             _velo = initVelo;
@@ -182,6 +185,23 @@ public class PlayerStateManager : BaseCharacter, IDamageable, IBuffable
                     }
                 }
                 break;
+            case Enums.EBuffs.Damage:
+                _entryTimeDB = Time.time;
+                _durationDB = duration;
+                PlayerDmgBuff buffInfo = new(rate, duration);
+                EventsManager.Instance.NotifyObservers(Enums.EEvents.PlayerOnReceiveDamageBuff, buffInfo);
+                Debug.Log("dmgg");
+                break;
+        }
+    }
+
+    private void HandleDMGBuffDuration()
+    {
+        if (Time.time - _entryTimeDB >= _durationDB && _entryTimeDB != 0)
+        {
+            EventsManager.Instance.NotifyObservers(Enums.EEvents.PlayerOnDeDamageBuff, null);
+            _entryTimeDB = 0f; //Đảm bảo chỉ thực hiện 1 lần
+            Debug.Log("Noti Debuff");
         }
     }
 

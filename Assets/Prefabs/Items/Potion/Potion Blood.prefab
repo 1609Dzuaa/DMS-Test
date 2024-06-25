@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3031484245695104872}
   - component: {fileID: 3031484245695104873}
   - component: {fileID: 3031484245695104878}
-  - component: {fileID: 8032081793932126051}
+  - component: {fileID: 4802056364814593152}
   m_Layer: 0
   m_Name: Potion Blood
   m_TagString: Untagged
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8125, y: 1.0625}
   m_EdgeRadius: 0
---- !u!114 &8032081793932126051
+--- !u!114 &4802056364814593152
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,9 +143,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3031484245695104874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58ad76bcaaca3d54db8c807306ed1d95, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fd7a10378d62b048a15d499aae6d6d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  rate: 20
+  rate: 2
   duration: 0

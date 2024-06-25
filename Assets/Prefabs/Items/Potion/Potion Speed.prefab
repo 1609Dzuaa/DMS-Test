@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1969499537976771589}
   - component: {fileID: 1969499537976771588}
   - component: {fileID: 1969499537976771611}
-  - component: {fileID: 4408928012719520664}
+  - component: {fileID: 1819660905943345006}
   m_Layer: 0
   m_Name: Potion Speed
   m_TagString: Untagged
@@ -134,7 +134,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.4624219, y: 0.81116164}
   m_EdgeRadius: 0
---- !u!114 &4408928012719520664
+--- !u!114 &1819660905943345006
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1969499537976771591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 991b887995235b54a887e76bc9ee1afb, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fd7a10378d62b048a15d499aae6d6d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
